@@ -9,6 +9,7 @@ namespace DbAccessConsoleApp
     {
         static void Main(string[] args)
         {
+            MyMethodList.Method_Int32Plus();
         }
         static void File_Read()
         {
