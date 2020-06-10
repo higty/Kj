@@ -11,6 +11,30 @@ namespace DbAccessConsoleApp
     {
         static void Main(string[] args)
         {
+            var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            DatabaseUtility.ExecuteNonQuery(s, "insert into DTask values(NEWID(), 'SQLの復習6/10', GETDATE(), '笹木', '2020-6-14', '寺子屋0610')");
+        }
+        static void DB_DTask_SelectAll()
+        {
+            var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            Console.WriteLine(connectionString);
+
+            using (var cn = new SqlConnection(connectionString))
+            {
+                //タスクを全件取得するSqlCommandクラスを作成
+                var cm = new SqlCommand("select * from DTask");
+                cm.Connection = cn;
+                cn.Open();
+
+                var dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    var dueDate = (DateTime)dr["DueDate"];
+                    var title = dr["Title"].ToString();
+                    Console.WriteLine(dueDate.ToString("yyyy/MM/dd") + " " + title);
+                }
+                cn.Close();
+            }
         }
         static void DB_DTask_Insert()
         {
@@ -80,3 +104,4 @@ namespace DbAccessConsoleApp
         }
     }
 }
+
