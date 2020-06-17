@@ -35,7 +35,6 @@ namespace DbAccessConsoleApp
 
             using (var cn = new SqlConnection(this.ConnectionString))
             {
-                //タスクを全件取得するSqlCommandクラスを作成
                 var cm = new SqlCommand("select * from DTask");
                 cm.Connection = cn;
                 cn.Open();
@@ -46,6 +45,9 @@ namespace DbAccessConsoleApp
                     var r = new TaskRecord();
                     r.Title = dr["Title"].ToString();
                     r.DueDate = (DateTime)dr["DueDate"];
+                    r.CreateTime = (DateTime)dr["CreateTime"];
+                    r.UserName = dr["UserName"].ToString();
+                    r.Description = dr["Description"].ToString();
                     l.Add(r);
                 }
                 cn.Close();

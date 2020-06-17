@@ -13,11 +13,11 @@ namespace DbAccessConsoleApp
         {
             var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             Database db = new Database();
-            db.ConnectionString = s;
+           db.ConnectionString = s;
             var taskList = db.SelectAll();
-            foreach (var taskRecord in taskList)
+            foreach (var r in taskList)
             {
-                Console.WriteLine(taskRecord.DueDate?.ToString("yyyy/MM/dd") + " " + taskRecord.Title);
+                Console.WriteLine(r.DueDate?.ToString("yyyy/MM/dd") + " " + r.UserName + " " + r.Title);
             }
             Console.ReadLine();
         }
