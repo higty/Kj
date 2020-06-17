@@ -12,7 +12,32 @@ namespace DbAccessConsoleApp
         static void Main(string[] args)
         {
             var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            Database db = new Database();
+            db.ConnectionString = s;
+            var taskList = db.SelectAll();
+            foreach (var taskRecord in taskList)
+            {
+                Console.WriteLine(taskRecord.DueDate?.ToString("yyyy/MM/dd") + " " + taskRecord.Title);
+            }
+            Console.ReadLine();
+        }
+        static void DB_DTask_Insert_By_Class()
+        {
+            var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            Database db = new Database();
+            db.ConnectionString = s;
+            db.ExecuteNonQuery("insert into DTask values(NEWID(), 'SQLの復習6/10', GETDATE(), '笹木', '2020-6-14', '寺子屋0610')");
+            db.ExecuteNonQuery("insert into DTask values(NEWID(), 'SQLの復習6/12', GETDATE(), '田中', '2020-6-22', '寺子屋0617')");
+            db.ExecuteNonQuery("insert into DTask values(NEWID(), 'SQLの復習6/14', GETDATE(), '鈴木', '2020-6-24', '寺子屋0617')");
+        }
+        static void DB_DTask_Insert_By_UtilityClass()
+        {
+            var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             DatabaseUtility.ExecuteNonQuery(s, "insert into DTask values(NEWID(), 'SQLの復習6/10', GETDATE(), '笹木', '2020-6-14', '寺子屋0610')");
+            DatabaseUtility.ExecuteNonQuery(s, "insert into DTask values(NEWID(), 'SQLの復習6/11', GETDATE(), '田中', '2020-6-14', '寺子屋0610')");
+            DatabaseUtility.ExecuteNonQuery(s, "insert into DTask values(NEWID(), 'SQLの復習6/12', GETDATE(), '鈴木', '2020-6-16', '寺子屋0610')");
+            DatabaseUtility.ExecuteNonQuery(s, "insert into DTask values(NEWID(), 'SQLの復習6/13', GETDATE(), '高橋', '2020-6-14', '寺子屋0610')");
+            DatabaseUtility.ExecuteNonQuery(s, "insert into DTask values(NEWID(), 'SQLの復習6/14', GETDATE(), '松田', '2020-6-18', '寺子屋0610')");
         }
         static void DB_DTask_SelectAll()
         {
