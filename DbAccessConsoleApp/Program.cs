@@ -13,7 +13,7 @@ namespace DbAccessConsoleApp
         {
             var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             Database db = new Database();
-           db.ConnectionString = s;
+            db.ConnectionString = s;
             var taskList = db.SelectAll();
             foreach (var r in taskList)
             {
