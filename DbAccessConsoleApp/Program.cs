@@ -4,12 +4,22 @@ using System.Text;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;//MSのSQLサーバーへのアクセス
+using System.Net.Sockets;
 
 namespace DbAccessConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
+        { 
+            //クラスを作る
+            var s = "test";
+            Console.WriteLine(s);
+            //フィールドを定義する
+            //インスタンスとは？
+            //メソッドを定義する
+        }
+        static void DB_By_Class()
         {
             var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             Database db = new Database();
