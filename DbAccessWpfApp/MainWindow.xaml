@@ -1,0 +1,23 @@
+﻿<Window x:Class="DbAccessWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbAccessWpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Hello World!" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+
+        <Label Content="SQLを入力" Margin="10,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></Label>
+        <TextBox HorizontalAlignment="Left" Margin="17,66,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="521"/>
+        <Button x:Name="ExecuteButton" Content="実行" FontSize="24" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="17,89,0,0" VerticalAlignment="Top" Height="46" Width="76" Click="ExecuteButton_Click"/>
+
+
+        <TextBox x:Name="Textbox1" HorizontalAlignment="Left" Margin="33,201,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Textbox2" HorizontalAlignment="Left" Margin="204,201,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="掛け算" HorizontalAlignment="Left" Margin="341,192,0,0" VerticalAlignment="Top" Height="41" Width="69" Click="Button_Click"/>
+
+
+    </Grid>
+</Window>

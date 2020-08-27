@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassStudyConsoleApp", "Cla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp2", "DbAccessWpfApp2\DbAccessWpfApp2.csproj", "{962E44A2-CE67-4106-85FC-770E845BF085}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp", "DbAccessWpfApp\DbAccessWpfApp.csproj", "{43CD80DA-D05D-474C-AF46-ACDFC391683F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp3", "DbAccessWpfApp3\DbAccessWpfApp3.csproj", "{38DC4733-EF12-40C5-B042-B64AABEA1C9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{962E44A2-CE67-4106-85FC-770E845BF085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{962E44A2-CE67-4106-85FC-770E845BF085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{962E44A2-CE67-4106-85FC-770E845BF085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CD80DA-D05D-474C-AF46-ACDFC391683F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CD80DA-D05D-474C-AF46-ACDFC391683F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CD80DA-D05D-474C-AF46-ACDFC391683F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CD80DA-D05D-474C-AF46-ACDFC391683F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38DC4733-EF12-40C5-B042-B64AABEA1C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38DC4733-EF12-40C5-B042-B64AABEA1C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38DC4733-EF12-40C5-B042-B64AABEA1C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38DC4733-EF12-40C5-B042-B64AABEA1C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
