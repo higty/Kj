@@ -28,7 +28,6 @@ namespace DbAccessWpfApp3
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //データベースからデータを取得して表示する
             var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
 
             var db = new Database();
@@ -44,7 +43,6 @@ namespace DbAccessWpfApp3
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //データベースからデータを取得して表示する
             var s = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
 
             var db = new Database();
