@@ -44,6 +44,7 @@ namespace DbAccessDatabase
                     var r = new PaymentRecord();
                     r.Title = dr["Title"].ToString();
                     r.Date = (DateTime)dr["Date"];
+                    r.Price = (Int32)dr["Price"];
                     l.Add(r);
                 }
                 cn.Close();

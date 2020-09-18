@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp", "DbAccessW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp3", "DbAccessWpfApp3\DbAccessWpfApp3.csproj", "{38DC4733-EF12-40C5-B042-B64AABEA1C9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccessWpfApp4", "DbAccessWpfApp4\DbAccessWpfApp4.csproj", "{C8788C72-C39D-4A06-B129-EF3699A3D29E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp4", "DbAccessWpfApp4\DbAccessWpfApp4.csproj", "{C8788C72-C39D-4A06-B129-EF3699A3D29E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccessDatabase", "DbAccessDatabase\DbAccessDatabase.csproj", "{771B664E-046F-478B-BDF0-90F37BEED470}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessDatabase", "DbAccessDatabase\DbAccessDatabase.csproj", "{771B664E-046F-478B-BDF0-90F37BEED470}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccessWpfApp5", "DbAccessWpfApp5\DbAccessWpfApp5.csproj", "{946843BF-1970-4CCD-82B3-8E8539E2E63C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{771B664E-046F-478B-BDF0-90F37BEED470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{771B664E-046F-478B-BDF0-90F37BEED470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{771B664E-046F-478B-BDF0-90F37BEED470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946843BF-1970-4CCD-82B3-8E8539E2E63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946843BF-1970-4CCD-82B3-8E8539E2E63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946843BF-1970-4CCD-82B3-8E8539E2E63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946843BF-1970-4CCD-82B3-8E8539E2E63C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

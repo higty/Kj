@@ -8,5 +8,11 @@ namespace DbAccessDatabase
     {
         public DateTime Date { get; set; }
         public String Title { get; set; }
+        public Int32 Price { get; set; }
+
+        public override string ToString()
+        {
+            return this.Date.ToString("yyyy/MM/dd") + " " + this.Price + "円 " + this.Title;
+        }
     }
 }
