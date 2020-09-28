@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbAccessWpfApp5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid Background="#f0f0f0">
-        <ListBox x:Name="PaymentListBox" Margin="10,12,10,58" SelectionChanged="PaymentListBox_SelectionChanged">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="PaymentListBox" Margin="10,10,10,10" SelectionChanged="PaymentListBox_SelectionChanged" Grid.Row="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Name="border" BorderBrush="#6699ff" BorderThickness="1" Padding="10 4 200 20" Margin="2" Background="#f0f0f0">
@@ -23,5 +27,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button x:Name="AddButton" Click="AddButton_Click" Grid.Row="1" Content="追加" FontSize="24" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="40" Width="90"/>
     </Grid>
 </Window>

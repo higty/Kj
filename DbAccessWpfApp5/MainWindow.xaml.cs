@@ -32,13 +32,24 @@ namespace DbAccessWpfApp5
             var db = new DbAccessDatabase.Database();
             db.ConnectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
 
-            var paymentList = db.SelectPaymentRecordList();
+            var paymentList = db.SelectPaymentRecords();
             this.PaymentListBox.ItemsSource = paymentList;
         }
 
         private void PaymentListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var paymentRecord = this.PaymentListBox.SelectedItem as DbAccessDatabase.PaymentRecord;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new EditRecordWindow();
+            w.ShowDialog();
+
+            var db = new DbAccessDatabase.Database();
+            db.ConnectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            var paymentList = db.SelectPaymentRecords();
+            this.PaymentListBox.ItemsSource = paymentList;
         }
     }
 }
