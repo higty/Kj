@@ -18,9 +18,24 @@ namespace DbAccessWpfApp5
     /// </summary>
     public partial class EditRecordWindow : Window
     {
+        private PaymentRecord _Record = null;
+
         public EditRecordWindow()
         {
             InitializeComponent();
+        }
+        public EditRecordWindow(PaymentRecord record)
+        {
+            InitializeComponent();
+            _Record = record;
+            this.SetControlValue();
+        }
+        private void SetControlValue()
+        {
+            this.TitleTextbox.Text = _Record.Title;
+            this.DateTextbox.Text = _Record.Date.ToString("yyyy/MM/dd");
+            this.PriceTextbox.Text = _Record.Price.ToString();
+
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

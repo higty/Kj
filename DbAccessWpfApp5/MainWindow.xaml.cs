@@ -56,6 +56,8 @@ namespace DbAccessWpfApp5
         private void PaymentListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var r = this.PaymentListBox.SelectedItem as PaymentRecord;
+            var w = new EditRecordWindow(r);
+            w.ShowDialog();
         }
     }
 }
