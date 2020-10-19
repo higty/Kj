@@ -11,7 +11,10 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListBox x:Name="PaymentListBox" Margin="10,10,10,10" SelectionChanged="PaymentListBox_SelectionChanged" Grid.Row="0">
+        <ListBox x:Name="PaymentListBox" Margin="10,10,10,10" 
+                 MouseDoubleClick="PaymentListBox_MouseDoubleClick"
+                 SelectionChanged="PaymentListBox_SelectionChanged" 
+                 Grid.Row="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Name="border" BorderBrush="#6699ff" BorderThickness="1" Padding="10 4 200 20" Margin="2" Background="#f0f0f0">

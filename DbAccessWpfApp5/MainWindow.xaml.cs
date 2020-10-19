@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DbAccessDatabase;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -50,6 +51,11 @@ namespace DbAccessWpfApp5
             db.ConnectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             var paymentList = db.SelectPaymentRecords();
             this.PaymentListBox.ItemsSource = paymentList;
+        }
+
+        private void PaymentListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var r = this.PaymentListBox.SelectedItem as PaymentRecord;
         }
     }
 }
