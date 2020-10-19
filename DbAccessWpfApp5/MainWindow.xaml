@@ -15,7 +15,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Name="border" BorderBrush="#6699ff" BorderThickness="1" Padding="10 4 200 20" Margin="2" Background="#f0f0f0">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Width="300">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Date, StringFormat=yyyy年MM月dd日}" Foreground="#888888" FontSize="16"></TextBlock>
                                 <TextBlock Text="{Binding Price}" Foreground="#446699" FontSize="16"></TextBlock>
