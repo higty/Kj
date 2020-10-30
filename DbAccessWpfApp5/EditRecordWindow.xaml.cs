@@ -52,22 +52,24 @@ namespace DbAccessWpfApp5
                 return;
             }
 
-            //入力値を元にPaymentRecordのインスタンスを作成
-            var r = new PaymentRecord();
-            r.Title = this.TitleTextbox.Text;
-            r.Date = date;
-            r.Price = price;
-
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+
+            //入力値を元にPaymentRecordのインスタンスを作成
             if (_Record == null)
             {
-                db.Insert(r);
+                _Record = new PaymentRecord();
+                _Record.Title = this.TitleTextbox.Text;
+                _Record.Date = date;
+                _Record.Price = price;
+                db.Insert(_Record);
             }
             else
             {
-                r.PaymentCD = _Record.PaymentCD;
-                db.Update(r);
+                _Record.Title = this.TitleTextbox.Text;
+                _Record.Date = date;
+                _Record.Price = price;
+                db.Update(_Record);
             }
             this.Close();
         }
