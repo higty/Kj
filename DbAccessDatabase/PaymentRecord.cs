@@ -54,4 +54,29 @@ namespace DbAccessDatabase
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
+
+
+    /// <summary>
+    /// INotifyPropertyChangedのサンプルのクラス
+    /// </summary>
+    public class TitleRecord : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private String _Title = "";
+        public String Title
+        {
+            get { return _Title; }
+            set
+            {
+                if (_Title == value) return;
+                _Title = value;
+                this.OnPropertyChanged(nameof(this.Title));
+            }
+        }
+        protected void OnPropertyChanged(String propertyName)
+        {
+            this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }
