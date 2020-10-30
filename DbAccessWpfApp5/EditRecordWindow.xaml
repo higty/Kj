@@ -18,6 +18,7 @@
         <TextBox x:Name="PriceTextbox" HorizontalAlignment="Left" Margin="10,189,0,0" TextWrapping="Wrap" FontSize="24" VerticalAlignment="Top" Width="115"/>
 
         <Button Content="保存" Name="SaveButton" Click="SaveButton_Click" FontSize="24" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="46" Width="82"/>
+        <Button Content="削除" Name="DeleteButton" HorizontalAlignment="Left" FontSize="24" Margin="100,0,0,10" VerticalAlignment="Bottom" Height="46" Width="82" Click="DeleteButton_Click"/>
 
     </Grid>
 </Window>

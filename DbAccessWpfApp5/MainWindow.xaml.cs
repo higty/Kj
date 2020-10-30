@@ -1,6 +1,7 @@
 ﻿using DbAccessDatabase;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace DbAccessWpfApp5
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<PaymentRecord> _PaymentList = new ObservableCollection<PaymentRecord>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,8 +36,11 @@ namespace DbAccessWpfApp5
             var db = new DbAccessDatabase.Database();
             db.ConnectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
 
-            var paymentList = db.SelectPaymentRecords();
-            this.PaymentListBox.ItemsSource = paymentList;
+            foreach (var item in db.SelectPaymentRecords())
+            {
+                this._PaymentList.Add(item);
+            }
+            this.PaymentListBox.ItemsSource = this._PaymentList;
         }
 
         private void PaymentListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,6 +64,11 @@ namespace DbAccessWpfApp5
             var r = this.PaymentListBox.SelectedItem as PaymentRecord;
             var w = new EditRecordWindow(r);
             w.ShowDialog();
+
+            if (w.Deleted == true)
+            {
+                this._PaymentList.Remove(r);
+            }
         }
     }
 }

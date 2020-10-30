@@ -88,5 +88,21 @@ namespace DbAccessDatabase
 
             return true;
         }
+        public Boolean Delete(Guid paymentCD)
+        {
+            //DBにレコードをDeleteする処理を書く
+            using (var cn = new SqlConnection(this.ConnectionString))
+            {
+                var sql = String.Format("delete Payment where PaymentCD='{0}'", paymentCD);
+                var cm = new SqlCommand(sql);
+                cm.Connection = cn;
+                cn.Open();
+
+                cm.ExecuteNonQuery();
+                cn.Close();
+            }
+
+            return true;
+        }
     }
 }

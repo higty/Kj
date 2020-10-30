@@ -20,6 +20,8 @@ namespace DbAccessWpfApp5
     {
         private PaymentRecord _Record = null;
 
+        public Boolean Deleted { get; set; } = false;
+
         public EditRecordWindow()
         {
             InitializeComponent();
@@ -71,6 +73,16 @@ namespace DbAccessWpfApp5
                 _Record.Price = price;
                 db.Update(_Record);
             }
+            this.Close();
+        }
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new Database();
+            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            db.Delete(_Record.PaymentCD);
+
+            this.Deleted = true;
+
             this.Close();
         }
     }
