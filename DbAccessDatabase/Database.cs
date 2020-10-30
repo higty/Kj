@@ -42,6 +42,7 @@ namespace DbAccessDatabase
                 while (dr.Read())
                 {
                     var r = new PaymentRecord();
+                    r.PaymentCD = (Guid)dr["PaymentCD"];
                     r.Title = dr["Title"].ToString();
                     r.Date = (DateTime)dr["Date"];
                     r.Price = (Int32)dr["Price"];
@@ -59,6 +60,24 @@ namespace DbAccessDatabase
             {
                 var sql = String.Format("insert into Payment values(NEWID(), '{0}', '{1}', {2})"
                     , record.Title, record.Date, record.Price);
+                var cm = new SqlCommand(sql);
+                cm.Connection = cn;
+                cn.Open();
+
+                cm.ExecuteNonQuery();
+                cn.Close();
+            }
+
+            return true;
+        }
+        public Boolean Update(PaymentRecord record)
+        {
+            //DBにレコードをUpdateする処理を書く
+            using (var cn = new SqlConnection(this.ConnectionString))
+            {
+                var sql = String.Format("update Payment set Title='{1}',Date='{2}',Price={3}"
+                    + " where PaymentCD='{0}'"
+                    , record.PaymentCD, record.Title, record.Date, record.Price);
                 var cm = new SqlCommand(sql);
                 cm.Connection = cn;
                 cn.Open();

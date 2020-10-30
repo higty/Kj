@@ -52,7 +52,7 @@ namespace DbAccessWpfApp5
                 return;
             }
 
-            //DBへInsert
+            //入力値を元にPaymentRecordのインスタンスを作成
             var r = new PaymentRecord();
             r.Title = this.TitleTextbox.Text;
             r.Date = date;
@@ -60,8 +60,15 @@ namespace DbAccessWpfApp5
 
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
-            db.Insert(r);
-
+            if (_Record == null)
+            {
+                db.Insert(r);
+            }
+            else
+            {
+                r.PaymentCD = _Record.PaymentCD;
+                db.Update(r);
+            }
             this.Close();
         }
     }
