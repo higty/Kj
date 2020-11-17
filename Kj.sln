@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp4", "DbAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessDatabase", "DbAccessDatabase\DbAccessDatabase.csproj", "{771B664E-046F-478B-BDF0-90F37BEED470}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccessWpfApp5", "DbAccessWpfApp5\DbAccessWpfApp5.csproj", "{946843BF-1970-4CCD-82B3-8E8539E2E63C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp5", "DbAccessWpfApp5\DbAccessWpfApp5.csproj", "{946843BF-1970-4CCD-82B3-8E8539E2E63C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccessWpfApp6", "DbAccessWpfApp6\DbAccessWpfApp6.csproj", "{A063F928-5B5E-4F99-8303-748FD00B57D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{946843BF-1970-4CCD-82B3-8E8539E2E63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946843BF-1970-4CCD-82B3-8E8539E2E63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946843BF-1970-4CCD-82B3-8E8539E2E63C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A063F928-5B5E-4F99-8303-748FD00B57D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A063F928-5B5E-4F99-8303-748FD00B57D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A063F928-5B5E-4F99-8303-748FD00B57D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A063F928-5B5E-4F99-8303-748FD00B57D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
