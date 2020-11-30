@@ -15,11 +15,14 @@ namespace WebScrapingApp
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
-            var nodes = doc.DocumentNode.SelectNodes("//div[@class='newsFeed_item_title']");
+            var nodes = doc.DocumentNode.SelectNodes("//div[@class='newsFeed_item_text']");
             foreach (HtmlNode node in nodes)
             {
-                var title = node.InnerText;
-                Console.WriteLine(title);
+                var titleNode = node.SelectSingleNode("div[@class='newsFeed_item_title']");
+                var title = titleNode.InnerText;
+                var timeNode = node.SelectSingleNode("div//time[@class='newsFeed_item_date']");
+                var time = timeNode.InnerText;
+                Console.WriteLine(time + " " + title);
             }
 
             Console.WriteLine();
