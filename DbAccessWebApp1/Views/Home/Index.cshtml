@@ -1,0 +1,10 @@
+﻿@model DbAccessWebApp1.Controllers.HomeController.IndexPage
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">家計簿アプリ</h1>
+    <time>@Model.Now.ToString("yyyy/MM/dd HH:mm:ss")</time>
+    <div>@Model.SomeValue</div>
+</div>
