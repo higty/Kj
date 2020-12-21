@@ -20,14 +20,18 @@ namespace DbAccessWebApp1.Controllers
 
         public IActionResult Index()
         {
-            var page = new IndexPage();
-            page.Now = DateTime.Now;
-            return View("Index", page);
+            var model = new IndexPage();
+            model.Now = DateTime.Now;
+            model.SomeValue = "何か値";
+            model.TaskList.Add("郵便を送る");
+
+            return View("Index", model);
         }
         public class IndexPage
         {
             public DateTime Now { get; set; }
             public String SomeValue { get; set; }
+            public List<string> TaskList { get; set; } = new List<string>();
         }
 
         public IActionResult Privacy()

@@ -3,8 +3,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+
+
+<div class="text-center" style="font-size:42px;">
     <h1 class="display-4">家計簿アプリ</h1>
     <time>@Model.Now.ToString("yyyy/MM/dd HH:mm:ss")</time>
     <div>@Model.SomeValue</div>
+
+    @if (Model.Now.Hour < 18)
+    {
+        <div class="light-panel" style="background-color:#e0f0ff;">昼間</div>
+    }
+    else
+    {
+        <div class="dark-panel" style="background-color: #000000;color: #ffffff;">夜です</div>
+    }
+
+    @for (int i = 0; i < 10; i++)
+    {
+        <div style="border: solid 1px #aaaaaa;margin-bottom:4px;">@i.ToString()</div>
+    }
+
 </div>

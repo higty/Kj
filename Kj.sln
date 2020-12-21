@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWpfApp6", "DbAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebScrapingApp", "WebScrapingApp\WebScrapingApp.csproj", "{72F57019-4D08-43EF-9196-B47248B0C3CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbAccessWebApp1", "DbAccessWebApp1\DbAccessWebApp1.csproj", "{2A14E8E6-6C05-4EC6-831D-AEFA3BA82716}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccessWebApp1", "DbAccessWebApp1\DbAccessWebApp1.csproj", "{2A14E8E6-6C05-4EC6-831D-AEFA3BA82716}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
