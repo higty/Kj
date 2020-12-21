@@ -1,3 +1,13 @@
-﻿
+﻿@model DbAccessWebApp1.Controllers.PaymentController.ListPage 
 
-<div style="font-size: 96px;color: #ff0000;font-weight:bold;">List page desu</div>
+<div style="font-size: 96px;color: #ff0000;font-weight:bold;">@Model.Text</div>
+
+@foreach (var item in Model.PaymentList)
+{
+    <div style="font-size:64px;">
+        <span>@item.Title</span>
+        <span style="color: #ff0000;">@item.Price.ToString()</span>
+    </div>
+}
+
+
