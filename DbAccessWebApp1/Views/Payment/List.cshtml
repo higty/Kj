@@ -1,13 +1,61 @@
-﻿@model DbAccessWebApp1.Controllers.PaymentController.ListPage 
+﻿@model DbAccessWebApp1.Controllers.PaymentController.ListPage
+
+<style type="text/css">
+    table {
+        width: 500px;
+        table-layout:fixed;
+        border-collapse:collapse;
+    }
+    thead{
+        color: #ffffff;
+        background-color: #222222;
+    }
+
+    .payment-table-border {
+        border: solid 1px #aaaaaa;
+    }
+    td.date {
+        width:110px;
+    }
+    td.price {
+        width: 90px;
+    }
+
+</style>
+
+
 
 <div style="font-size: 96px;color: #ff0000;font-weight:bold;">@Model.Text</div>
 
-@foreach (var item in Model.PaymentList)
+@*@foreach (var item in Model.PaymentList)
 {
-    <div style="font-size:64px;">
-        <span>@item.Title</span>
-        <span style="color: #ff0000;">@item.Price.ToString()</span>
+    <div style="font-size:64px;background-color:#ffffc0;padding:10px;margin-bottom:10px;">
+        <span style="background-color:#00ffff;width:500px;display:inline-block;">@item.Title</span>
+        <span style="color: #ff0000;">@item.Price.ToString("#,##0") 円</span>
     </div>
-}
+}*@
+
+<table>
+    <thead>
+        <tr>
+            <td class="payment-table-border date">日付</td>
+            <td class="payment-table-border price">価格</td>
+            <td class="payment-table-border title">タイトル</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PaymentList)
+        {
+            <tr>
+                <td class="payment-table-border">@item.Date.ToString("yyyy/MM/dd")</td>
+                <td class="payment-table-border">@item.Price.ToString("#,##0") 円</td>
+                <td class="payment-table-border">@item.Title</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
 
 

@@ -17,14 +17,14 @@ namespace DbAccessWebApp1.Controllers
         public IActionResult List()
         {
             var model = new ListPage();
-            model.Text = "今年もあと10日！";
+            model.Text = "これまでに買ったモノ";
 
-            for (int i = 0; i < 10; i++)
+            var db = new Database();
+            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            var paymentList = db.SelectPaymentRecords();
+            foreach (var item in paymentList.OrderBy(el => el.Title))
             {
-                var r = new PaymentRecord();
-                r.Title = "商品" + i;
-                r.Price = i * 100;
-                model.PaymentList.Add(r);
+                model.PaymentList.Add(item);
             }
             return View(model);
         }
