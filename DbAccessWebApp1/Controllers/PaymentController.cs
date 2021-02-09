@@ -28,5 +28,15 @@ namespace DbAccessWebApp1.Controllers
             }
             return View(model);
         }
+        [HttpGet("/Add")]
+        public IActionResult Add()
+        {
+            return this.View();
+        }
+        [HttpGet("/JavaScriptSample")]
+        public IActionResult JavaScriptSample()
+        {
+            return this.View();
+        }
     }
 }
