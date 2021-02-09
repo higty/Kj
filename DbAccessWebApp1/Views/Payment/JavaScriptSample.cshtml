@@ -2,8 +2,6 @@
 
 <div id="Panel1"></div>
 
-
-
 <script type="text/javascript">
     //DOM Element (WPFで言うとコントロール)
 
@@ -17,3 +15,41 @@
 
 </script>
 
+
+<style type="text/css">
+    .square-panel {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: #ff0000;
+        border: solid 1px #999999;
+        margin: 4px 4px;
+    }
+</style>
+
+
+
+<input type="button" id="Button1" value="配置" />
+<div id="Panel2"></div>
+
+<script type="text/javascript">
+    //JavaScriptでDOM Elementの操作ができる。
+    //Attribute, Style, Class, Textとかを操作できる。
+    //WEBサーバーへリクエストを送る。
+    //JSON形式の文字列を操作する。
+
+
+    const button1 = document.getElementById("Button1");
+    button1.addEventListener("click", Button1_Click);
+
+    function Button1_Click() {
+        for (var i = 0; i < 10; i++) {
+            const span = document.createElement("span");
+            span.classList.add("square-panel");
+
+            const panel2 = document.getElementById("Panel2");
+            panel2.appendChild(span);
+        }
+    }
+
+</script>
