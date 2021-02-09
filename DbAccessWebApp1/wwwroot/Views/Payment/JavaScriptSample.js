@@ -13,7 +13,6 @@ panel1.style["color"] = "#ff0000";
 //WEBサーバーへリクエストを送る。
 //JSON形式の文字列を操作する。
 
-
 const button1 = document.getElementById("Button1");
 button1.addEventListener("click", Button1_Click);
 
@@ -26,6 +25,16 @@ function Button1_Click() {
         panel2.appendChild(span);
     }
 }
+
+
+const button2 = document.getElementById("Button2");
+button2.addEventListener("click", Button2_Click);
+function Button2_Click() {
+    const textBox1 = document.getElementById("TextBox1");
+    const text = textBox1.value;
+    alert(text);
+}
+
 
 
 
