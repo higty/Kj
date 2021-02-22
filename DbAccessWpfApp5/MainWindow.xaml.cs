@@ -31,6 +31,7 @@ namespace DbAccessWpfApp5
 
             this.GetPaymentList();
         }
+
         private void GetPaymentList()
         {
             var db = new DbAccessDatabase.Database();

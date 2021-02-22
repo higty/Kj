@@ -38,5 +38,10 @@ namespace DbAccessWebApp1.Controllers
         {
             return this.View();
         }
+        [HttpGet("/TypeScriptSample")]
+        public IActionResult TypeScriptSample()
+        {
+            return this.View();
+        }
     }
 }
