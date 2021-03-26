@@ -1,4 +1,8 @@
-﻿<div>
+﻿
+
+
+
+<div>
     TypeScript!!!
 </div>
 
@@ -7,5 +11,58 @@
 <div id="Panel1"></div>
 
 
-<script src="~/Views/Payment/TypeScriptSample.js"></script>
+<style type="text/css">
+    .child-panel.red {
+        background-color: #ff0000;
+        color: #ffffff;
+        padding: 10px;
+    }
+
+    .child-panel.green {
+        background-color: #00ff00;
+        color: #ffffff;
+        padding: 10px;
+    }
+
+    .child-panel.blue {
+        background-color: #0000ff;
+        color: #ffffff;
+        padding: 10px;
+    }
+
+    .child-panel.white {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border: solid 1px #aaaaaa;
+    }
+</style>
+
+<div id="Panel2">
+    <div class="child-panel red">
+        <div class="text1">Text1</div>
+        <div class="text2">Text2</div>
+        <div class="text3">Text3</div>
+    </div>
+    <div class="child-panel green">
+        <div class="text1">Text1</div>
+        <div class="text2">Text2</div>
+        <div class="text3">Text3</div>
+    </div>
+    <div class="child-panel blue">
+        <div class="text1">Text1</div>
+        <div class="text2">Text2</div>
+        <div class="text3">Text3</div>
+    </div>
+    <div class="child-panel white">
+        <div class="text1">Text1</div>
+        <div class="text2">Text2</div>
+        <div class="text3">Text3</div>
+    </div>
+</div>
+
+<input type="button" id="Button2" value="Change Text1 color to Purple" />
+
+
+
+<script src="~/Views/Payment/TypeScriptSample.js" type="module"></script>
 

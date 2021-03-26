@@ -1,4 +1,49 @@
-﻿<span style="font-size:20px;">商品の追加ページです</span>
+﻿<style type="text/css">
+    .button {
+        font-size: 24px;
+        font-weight: bold;
+        padding: 10px 20px;
+    }
+    .property-panel{
+        padding: 10px 0;
+    }
+    .property-name {
+        font-weight: bold;
+    }
+    .property-value input {
+        font-size: 20px;
+    }
+    #SaveButton {
+        margin-top: 40px;
+    }
+</style>
 
 
+<span style="font-size:20px;">商品の追加ページです</span>
+
+<div class="property-panel">
+    <div class="property-name">商品名</div>
+    <div class="property-value">
+        <input type="text" name="DisplayName" value="たけのこの里" />
+    </div>
+</div>
+<div class="property-panel">
+    <div class="property-name">日付</div>
+    <div class="property-value">
+        <input type="text" name="Date" k-id="date" value="2021/3/26" />
+    </div>
+</div>
+<div class="property-panel">
+    <div class="property-name">価格</div>
+    <div class="property-value">
+        <input type="text" name="Price" value="150" />
+    </div>
+</div>
+
+<div id="KeyCodePanel"></div>
+
+
+<input type="button" id="SaveButton" class="button" value="保存" />
+
+<script src="~/Views/Payment/Add.js" type="module"></script>
 

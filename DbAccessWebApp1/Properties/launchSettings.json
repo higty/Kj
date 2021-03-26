@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "TypeScriptSample",
+      "launchUrl": "Payment/Add",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,16 +1,23 @@
-﻿class Person {
+﻿import { $ } from "../../js/HtmlElementQuery.js";
+
+class Person {
     public name = "";
 
     public initialize() {
-        document.getElementById("Button1").addEventListener("click", this.Button1_Click.bind(this));
+        $("#Button1").click(this.Button1_Click.bind(this));
+        $("#Button2").click(this.Button2_Click.bind(this));
     }
     public showName() {
         alert(this.name);
     }
     private Button1_Click() {
-        const tx = document.getElementById("TextBox1") as HTMLInputElement;
-        this.name = tx.value;
+        this.name = $("#TextBox1").getValue();
         this.showName();
+    }
+    private Button2_Click() {
+        $(".text1").setStyle("background-color", "#c000c0");
+        $(".text1").setStyle("color", "#ffffff");
+        $(".text1").setStyle("padding", "10px");
     }
 }
 
@@ -30,3 +37,6 @@ class Car {
 
 const p = new Person();
 p.initialize();
+
+
+

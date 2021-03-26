@@ -28,7 +28,7 @@ namespace DbAccessWebApp1.Controllers
             }
             return View(model);
         }
-        [HttpGet("/Add")]
+        [HttpGet("/Payment/Add")]
         public IActionResult Add()
         {
             return this.View();
