@@ -12,7 +12,7 @@ export class Page {
     }
     saveButton_Click(e) {
         const p = {
-            DisplayName: $("[name='DisplayName']").getValue(),
+            Title: $("[name='Title']").getValue(),
             Date: $("[name='Date']").getValue(),
             Price: $("[name='Price']").getValue(),
         };
@@ -20,12 +20,18 @@ export class Page {
         //Class .my-class
         //Attribtue [my-attribute]
         //Attribtue&Value [my-attribute='']
-        //オブジェクトpをサーバーへ送信する
+        //オブジェクトpをJSON形式でサーバーへ送信する
+        //BSONとJSON
+        //↓JSONのメリットとデメリット
+        //可読性
+        //デバッグしづらい
+        //ネットでたくさん検索結果がある
+        //ちょっと遅い
         HttpClient.postJson("/Api/Payment/Add", p, this.addPaymentCallback.bind(this));
     }
     addPaymentCallback(response) {
         //サーバーの処理が終わった後に呼ばれるメソッド
-        alert("サーバーから戻ってきたよ");
+        location.href = "/Payment/List";
     }
 }
 const page = new Page();

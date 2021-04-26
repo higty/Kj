@@ -1,8 +1,12 @@
 ﻿using DbAccessDatabase;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DbAccessWebApp1.Controllers
@@ -22,7 +26,7 @@ namespace DbAccessWebApp1.Controllers
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             var paymentList = db.SelectPaymentRecords();
-            foreach (var item in paymentList.OrderBy(el => el.Title))
+            foreach (var item in paymentList.OrderByDescending(el => el.Date))
             {
                 model.PaymentList.Add(item);
             }
@@ -47,8 +51,24 @@ namespace DbAccessWebApp1.Controllers
         [HttpPost("/Api/Payment/Add")]
         public async Task<Object> Api_Payment_Add()
         {
-            var p = "test";
+            var json = await this.GetRequestBodyText();
+            var r = JsonConvert.DeserializeObject<PaymentRecord>(json);
+            var db = new Database();
+            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            db.Insert(r);
+
             return new { Message = "正常終了！" };
         }
+        private async Task<String> GetRequestBodyText()
+        {
+            Request.EnableBuffering();
+            Request.Body.Position = 0;
+            var m = new MemoryStream();
+            await Request.Body.CopyToAsync(m);
+            var bb = m.ToArray();
+            var text = Encoding.UTF8.GetString(bb);
+            return text;
+        }
+
     }
 }
