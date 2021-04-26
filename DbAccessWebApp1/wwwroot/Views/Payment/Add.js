@@ -4,11 +4,6 @@ export class Page {
     initialize() {
         //追加ボタンがクリックされた時のイベントハンドラーの登録
         $("#SaveButton").click(this.saveButton_Click.bind(this));
-        $("[name='Price']").keydown(this.priceTextBox_Keydown.bind(this));
-        //$("body").on("keydown", "[name='Price']", this.priceTextBox_Keydown1.bind(this))
-    }
-    priceTextBox_Keydown(e) {
-        $("#KeyCodePanel").setInnerText(e.keyCode.toString());
     }
     saveButton_Click(e) {
         const p = {
@@ -27,11 +22,14 @@ export class Page {
         //デバッグしづらい
         //ネットでたくさん検索結果がある
         //ちょっと遅い
-        HttpClient.postJson("/Api/Payment/Add", p, this.addPaymentCallback.bind(this));
+        HttpClient.postJson("/Api/Payment/Add", p, this.addPaymentCallback.bind(this), this.errorCallback.bind(this));
     }
     addPaymentCallback(response) {
         //サーバーの処理が終わった後に呼ばれるメソッド
         location.href = "/Payment/List";
+    }
+    errorCallback(response) {
+        alert("入力値にエラーがあります。");
     }
 }
 const page = new Page();

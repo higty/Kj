@@ -53,6 +53,11 @@ namespace DbAccessWebApp1.Controllers
         {
             var json = await this.GetRequestBodyText();
             var r = JsonConvert.DeserializeObject<PaymentRecord>(json);
+            if (r.Title == "")
+            {
+                return new BadRequestResult();
+            }
+
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             db.Insert(r);
