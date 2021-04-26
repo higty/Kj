@@ -43,5 +43,12 @@ namespace DbAccessWebApp1.Controllers
         {
             return this.View();
         }
+
+        [HttpPost("/Api/Payment/Add")]
+        public async Task<Object> Api_Payment_Add()
+        {
+            var p = "test";
+            return new { Message = "正常終了！" };
+        }
     }
 }

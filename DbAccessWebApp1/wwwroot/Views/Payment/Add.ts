@@ -1,4 +1,5 @@
 ﻿import { $ } from "../../js/HtmlElementQuery.js";
+import { HttpClient, HttpResponse } from "../../js/HttpClient.js";
 
 export class Page {
     public initialize() {
@@ -8,6 +9,10 @@ export class Page {
 
         //$("body").on("keydown", "[name='Price']", this.priceTextBox_Keydown1.bind(this))
     }
+    private priceTextBox_Keydown(e: KeyboardEvent) {
+        $("#KeyCodePanel").setInnerText(e.keyCode.toString());
+    }
+
     private saveButton_Click(e: Event) {
         const p = {
             DisplayName: $("[name='DisplayName']").getValue(),
@@ -21,14 +26,12 @@ export class Page {
         //Attribtue&Value [my-attribute='']
 
         //オブジェクトpをサーバーへ送信する
-
+        HttpClient.postJson("/Api/Payment/Add", p, this.addPaymentCallback.bind(this));
     }
-    private priceTextBox_Keydown(e: KeyboardEvent) {
-        $("#KeyCodePanel").setInnerText(e.keyCode.toString());
+    private addPaymentCallback(response: HttpResponse) {
+        //サーバーの処理が終わった後に呼ばれるメソッド
+        alert("サーバーから戻ってきたよ");
     }
-//    private priceTextBox_Keydown1(target: Element, e: KeyboardEvent) {
-//        alert(e.keyCode);
-//    }
 }
 
 const page = new Page();
