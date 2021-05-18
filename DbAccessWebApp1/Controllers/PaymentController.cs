@@ -37,17 +37,6 @@ namespace DbAccessWebApp1.Controllers
         {
             return this.View();
         }
-        [HttpGet("/JavaScriptSample")]
-        public IActionResult JavaScriptSample()
-        {
-            return this.View();
-        }
-        [HttpGet("/TypeScriptSample")]
-        public IActionResult TypeScriptSample()
-        {
-            return this.View();
-        }
-
         [HttpPost("/Api/Payment/Add")]
         public async Task<Object> Api_Payment_Add()
         {
@@ -73,6 +62,27 @@ namespace DbAccessWebApp1.Controllers
             var bb = m.ToArray();
             var text = Encoding.UTF8.GetString(bb);
             return text;
+        }
+
+        [HttpGet("/Payment/{paymentCD}/Edit")]
+        public IActionResult Edit(Guid paymentCD)
+        {
+            var db = new Database();
+            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            var rPayment = db.SelectByPrimaryKey(paymentCD);
+
+            return this.View(rPayment);
+        }
+
+        [HttpGet("/JavaScriptSample")]
+        public IActionResult JavaScriptSample()
+        {
+            return this.View();
+        }
+        [HttpGet("/TypeScriptSample")]
+        public IActionResult TypeScriptSample()
+        {
+            return this.View();
         }
 
     }

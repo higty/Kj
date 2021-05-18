@@ -1,9 +1,11 @@
 ﻿using DbAccessDatabase;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -51,6 +53,10 @@ namespace DbAccessWpfApp5
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            this.AddByApi();
+        }
+        private void Add()
+        {
             var w = new EditRecordWindow();
             w.ShowDialog();
 
@@ -58,6 +64,16 @@ namespace DbAccessWpfApp5
             db.ConnectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             var paymentList = db.SelectPaymentRecords();
             this.PaymentListBox.ItemsSource = paymentList;
+        }
+        private void AddByApi()
+        {
+            var cl = new HttpClient();
+            var r = new PaymentRecord();
+            r.Title = "いちごポッキー";
+            r.Price = 180;
+            r.Date = new DateTime(2021, 5, 18);
+            var json = JsonConvert.SerializeObject(r);
+            cl.PostAsync("https://localhost:44387/Api/Payment/Add", new StreamContent(new MemoryStream(Encoding.UTF8.GetBytes(json))));
         }
 
         private void PaymentListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -52,6 +52,31 @@ namespace DbAccessDatabase
             }
             return l;
         }
+        public PaymentRecord SelectByPrimaryKey(Guid paymentCD)
+        {
+            using (var cn = new SqlConnection(this.ConnectionString))
+            {
+                var query = String.Format("select * from Payment where PaymentCD = '{0}'", paymentCD);
+                var cm = new SqlCommand(query);
+                cm.Connection = cn;
+                cn.Open();
+
+                var dr = cm.ExecuteReader();
+                PaymentRecord r = null;
+                while (dr.Read())
+                {
+                    r = new PaymentRecord();
+                    r.PaymentCD = (Guid)dr["PaymentCD"];
+                    r.Title = dr["Title"].ToString();
+                    r.Date = (DateTime)dr["Date"];
+                    r.Price = (Int32)dr["Price"];
+                    break;
+                }
+                cn.Close();
+
+                return r;
+            }
+        }
 
         public Boolean Insert(PaymentRecord record)
         {

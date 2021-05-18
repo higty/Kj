@@ -1,18 +1,24 @@
-﻿<style type="text/css">
+﻿@model DbAccessDatabase.PaymentRecord
+
+<style type="text/css">
     .button {
         font-size: 24px;
         font-weight: bold;
         padding: 10px 20px;
     }
-    .property-panel{
+
+    .property-panel {
         padding: 10px 0;
     }
+
     .property-name {
         font-weight: bold;
     }
+
     .property-value input {
         font-size: 20px;
     }
+
     #SaveButton {
         margin-top: 40px;
     }
@@ -28,26 +34,24 @@
 <div class="property-panel">
     <div class="property-name">商品名</div>
     <div class="property-value">
-        <input type="text" name="Title" value="" />
+        <input type="text" name="Title" value="@Model.Title" />
     </div>
 </div>
 <div class="property-panel">
     <div class="property-name">日付</div>
     <div class="property-value">
-        <input type="text" name="Date" k-id="date" value="" />
+        <input type="text" name="Date" k-id="date" value="@Model.Date.ToString("yyyy/MM/dd")" />
     </div>
 </div>
 <div class="property-panel">
     <div class="property-name">価格</div>
     <div class="property-value">
-        <input type="text" name="Price" value="" />
+        <input type="text" name="Price" value="@Model.Price" />
     </div>
 </div>
-
-<div id="KeyCodePanel"></div>
 
 
 <input type="button" id="SaveButton" class="button" value="保存" />
 
-<script src="~/Views/Payment/Add.js" type="module"></script>
+@*<script src="~/Views/Payment/Edit.js" type="module"></script>*@
 

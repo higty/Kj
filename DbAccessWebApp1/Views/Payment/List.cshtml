@@ -27,12 +27,16 @@
 
 <div style="font-size: 96px;color: #ff0000;font-weight:bold;">@Model.Text</div>
 
+<div style="display:flex;background-color: #f0f0f4; margin-bottom:20px;padding:10px;font-size:32px;">
+    <a href="/Payment/Add">追加</a>
+</div>
+
 @foreach (var item in Model.PaymentList)
 {
     <div style="display:flex;background-color: #f0f0f4; margin-bottom:20px;padding:10px;">
         <img src="/image/Hig.png" />
         <div style="margin-left:10px;">
-            <a href="https://www.yahoo.co.jp" style="color:#ff4488;margin-bottom:6px;font-size:20px;">@item.Title</a>
+            <a href="/Payment/@item.PaymentCD/Edit" style="color:#ff4488;margin-bottom:6px;font-size:20px;">@item.Title</a>
             <div style="color: #999999;">@item.Date.ToString("yyyy/MM/dd hh:mm")</div>
             <div class="price">@item.Price.ToString() 円</div>
         </div>
