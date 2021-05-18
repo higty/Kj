@@ -56,8 +56,8 @@ namespace DbAccessDatabase
         {
             using (var cn = new SqlConnection(this.ConnectionString))
             {
-                var query = String.Format("select * from Payment where PaymentCD = '{0}'", paymentCD);
-                var cm = new SqlCommand(query);
+                var sql = String.Format("select * from Payment where PaymentCD = '{0}'", paymentCD);
+                var cm = new SqlCommand(sql);
                 cm.Connection = cn;
                 cn.Open();
 

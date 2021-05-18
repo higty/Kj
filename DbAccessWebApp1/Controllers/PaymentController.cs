@@ -73,6 +73,34 @@ namespace DbAccessWebApp1.Controllers
 
             return this.View(rPayment);
         }
+        [HttpPost("/Api/Payment/Edit")]
+        public async Task<Object> Api_Payment_Edit()
+        {
+            var json = await this.GetRequestBodyText();
+            var r = JsonConvert.DeserializeObject<PaymentRecord>(json);
+            if (r.Title == "")
+            {
+                return new BadRequestResult();
+            }
+
+            var db = new Database();
+            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            db.Update(r);
+
+            return new { Message = "正常終了！" };
+        }
+        [HttpPost("/Api/Payment/Delete")]
+        public async Task<Object> Api_Payment_Delete()
+        {
+            var json = await this.GetRequestBodyText();
+            var r = JsonConvert.DeserializeObject<PaymentRecord>(json);
+
+            var db = new Database();
+            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            db.Delete(r.PaymentCD);
+
+            return new { Message = "正常終了！" };
+        }
 
         [HttpGet("/JavaScriptSample")]
         public IActionResult JavaScriptSample()
