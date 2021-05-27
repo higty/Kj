@@ -1,4 +1,5 @@
 ﻿using DbAccessDatabase;
+using DbAccessWebApp1.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -32,10 +33,19 @@ namespace DbAccessWebApp1.Controllers
             }
             return View(model);
         }
+        
+        public class PaymentPage
+        {
+            public PageEditMode EditMode { get; set; } = PageEditMode.Add;
+            public PaymentRecord PaymentRecord { get; set; }
+        }
         [HttpGet("/Payment/Add")]
         public IActionResult Add()
         {
-            return this.View();
+            var page = new PaymentPage();
+            page.EditMode = PageEditMode.Add;
+            page.PaymentRecord = new PaymentRecord();
+            return this.View("Edit", page);
         }
         [HttpPost("/Api/Payment/Add")]
         public async Task<Object> Api_Payment_Add()
@@ -53,25 +63,18 @@ namespace DbAccessWebApp1.Controllers
 
             return new { Message = "正常終了！" };
         }
-        private async Task<String> GetRequestBodyText()
-        {
-            Request.EnableBuffering();
-            Request.Body.Position = 0;
-            var m = new MemoryStream();
-            await Request.Body.CopyToAsync(m);
-            var bb = m.ToArray();
-            var text = Encoding.UTF8.GetString(bb);
-            return text;
-        }
 
         [HttpGet("/Payment/{paymentCD}/Edit")]
         public IActionResult Edit(Guid paymentCD)
         {
+            var page = new PaymentPage();
+            page.EditMode = PageEditMode.Edit;
+
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
-            var rPayment = db.SelectByPrimaryKey(paymentCD);
+            page.PaymentRecord = db.SelectByPrimaryKey(paymentCD);
 
-            return this.View(rPayment);
+            return this.View(page);
         }
         [HttpPost("/Api/Payment/Edit")]
         public async Task<Object> Api_Payment_Edit()
@@ -100,6 +103,17 @@ namespace DbAccessWebApp1.Controllers
             db.Delete(r.PaymentCD);
 
             return new { Message = "正常終了！" };
+        }
+
+        private async Task<String> GetRequestBodyText()
+        {
+            Request.EnableBuffering();
+            Request.Body.Position = 0;
+            var m = new MemoryStream();
+            await Request.Body.CopyToAsync(m);
+            var bb = m.ToArray();
+            var text = Encoding.UTF8.GetString(bb);
+            return text;
         }
 
         [HttpGet("/JavaScriptSample")]
