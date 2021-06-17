@@ -1,8 +1,17 @@
 import { $ } from "../../js/HtmlElementQuery.js";
 import { HttpClient } from "../../js/HttpClient.js";
 export class Page {
+    constructor() {
+        this.EditMode = "Add";
+    }
     initialize() {
-        //編集ボタンがクリックされた時のイベントハンドラーの登録
+        if ($("[name='EditMode']").getValue() == "Add") {
+            this.EditMode = "Add";
+        }
+        else if ($("[name='EditMode']").getValue() == "Edit") {
+            this.EditMode = "Edit";
+        }
+        //保存ボタンがクリックされた時のイベントハンドラーの登録
         $("#SaveButton").click(this.saveButton_Click.bind(this));
         $("#DeleteButton").click(this.deleteButton_Click.bind(this));
     }
@@ -13,7 +22,15 @@ export class Page {
             Date: $("[name='Date']").getValue(),
             Price: $("[name='Price']").getValue(),
         };
-        HttpClient.postJson("/Api/Payment/Edit", p, this.addPaymentCallback.bind(this), this.errorCallback.bind(this));
+        switch (this.EditMode) {
+            case "Add":
+                HttpClient.postJson("/Api/Payment/Add", p, this.addPaymentCallback.bind(this), this.errorCallback.bind(this));
+                break;
+            case "Edit":
+                HttpClient.postJson("/Api/Payment/Edit", p, this.addPaymentCallback.bind(this), this.errorCallback.bind(this));
+                break;
+            default:
+        }
     }
     deleteButton_Click(e) {
         const p = {

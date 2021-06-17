@@ -37,14 +37,16 @@ namespace DbAccessWebApp1.Controllers
         public class PaymentPage
         {
             public PageEditMode EditMode { get; set; } = PageEditMode.Add;
-            public PaymentRecord PaymentRecord { get; set; }
+            public Guid? PaymentCD { get; set; }
+            public String Title { get; set; } = "";
+            public DateTime? Date { get; set; }
+            public Int32? Price { get; set; }
         }
         [HttpGet("/Payment/Add")]
         public IActionResult Add()
         {
             var page = new PaymentPage();
             page.EditMode = PageEditMode.Add;
-            page.PaymentRecord = new PaymentRecord();
             return this.View("Edit", page);
         }
         [HttpPost("/Api/Payment/Add")]
@@ -72,7 +74,12 @@ namespace DbAccessWebApp1.Controllers
 
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
-            page.PaymentRecord = db.SelectByPrimaryKey(paymentCD);
+            var rPaymentRecord = db.SelectByPrimaryKey(paymentCD);
+
+            page.PaymentCD = rPaymentRecord.PaymentCD;
+            page.Title = rPaymentRecord.Title;
+            page.Date = rPaymentRecord.Date;
+            page.Price = rPaymentRecord.Price;
 
             return this.View(page);
         }
