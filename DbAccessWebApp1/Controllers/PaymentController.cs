@@ -123,6 +123,16 @@ namespace DbAccessWebApp1.Controllers
             return text;
         }
 
+        [HttpPost("/Api/Payment/List/Get")]
+        public List<PaymentRecord> Api_Payment_List_Get()
+        {
+            var db = new Database();
+            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            var l = db.SelectPaymentRecords();
+
+            return l;
+        }
+
         [HttpGet("/JavaScriptSample")]
         public IActionResult JavaScriptSample()
         {
