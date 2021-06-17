@@ -33,6 +33,7 @@ namespace WebApiWpfApp1
         }
         private void GetPaymentList()
         {
+            //WPFで結果を待つとデッドロックしますよ。※ダメな書き方
             var json = this.GetPaymentListJson().GetAwaiter().GetResult();
             var l = JsonConvert.DeserializeObject<List<PaymentRecord>>(json);
             foreach (var item in l)
@@ -50,10 +51,11 @@ namespace WebApiWpfApp1
         }
         private async Task<String> GetPaymentListJson()
         {
-            return this.GetPaymentListJson_Dummy();
             //Web APIから取得
             var cl = new HttpClient();
-            var res = await cl.PostAsync("https://localhost:44387/Api/Payment/List/Get", new MultipartFormDataContent());
+            var content = new StringContent(JsonConvert.SerializeObject(new { }), Encoding.UTF8, "application/json");
+            //C#5.0 非同期 状態マシーン State Machine
+            var res = await cl.PostAsync("https://localhost:44387/Api/Payment/List/Get", content);
             var json = await res.Content.ReadAsStringAsync();
 
             return json;
