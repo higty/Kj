@@ -31,5 +31,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="AddButton" Click="AddButton_Click" Grid.Row="1" Content="追加" FontSize="24" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="40" Width="90"/>
+        <Button x:Name="ReloadButton" Click="ReloadButton_Click" Grid.Row="1" Content="更新" FontSize="24" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Center" Height="40" Width="90"/>
     </Grid>
 </Window>

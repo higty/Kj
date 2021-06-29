@@ -72,5 +72,17 @@ namespace WebApiWpfApp1
             //    this._PaymentList.Remove(r);
             //}
         }
+
+        private async void ReloadButton_Click(object sender, RoutedEventArgs e)
+        {
+            var json = await this.GetPaymentListJson();
+            var l = JsonConvert.DeserializeObject<List<PaymentRecord>>(json);
+
+            _PaymentList.Clear();
+            foreach (var item in l)
+            {
+                _PaymentList.Add(item);
+            }
+        }
     }
 }

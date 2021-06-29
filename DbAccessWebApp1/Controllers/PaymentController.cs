@@ -49,15 +49,26 @@ namespace DbAccessWebApp1.Controllers
             page.EditMode = PageEditMode.Add;
             return this.View("Edit", page);
         }
+
+        public class Api_Payment_Add_Parameter
+        {
+            public String Title { get; set; }
+            public DateTime Date { get; set; }
+            public Int32 Price { get; set; }
+        }
         [HttpPost("/Api/Payment/Add")]
         public async Task<Object> Api_Payment_Add()
         {
             var json = await this.GetRequestBodyText();
-            var r = JsonConvert.DeserializeObject<PaymentRecord>(json);
-            if (r.Title == "")
+            var p = JsonConvert.DeserializeObject<Api_Payment_Add_Parameter>(json);
+            if (p.Title == "")
             {
                 return new BadRequestResult();
             }
+            var r = new PaymentRecord();
+            r.Title = p.Title;
+            r.Date = p.Date;
+            r.Price = p.Price;
 
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
@@ -128,7 +139,7 @@ namespace DbAccessWebApp1.Controllers
         {
             var db = new Database();
             db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
-            var l = db.SelectPaymentRecords();
+            var l = db.SelectPaymentRecords().OrderByDescending(el => el.Date).ToList();
 
             return l;
         }
