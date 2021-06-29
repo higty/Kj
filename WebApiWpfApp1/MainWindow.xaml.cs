@@ -28,13 +28,12 @@ namespace WebApiWpfApp1
         public MainWindow()
         {
             InitializeComponent();
-
-            this.GetPaymentList();
         }
-        private void GetPaymentList()
+        protected async override void OnInitialized(EventArgs e)
         {
-            //WPFで結果を待つとデッドロックしますよ。※ダメな書き方
-            var json = this.GetPaymentListJson().GetAwaiter().GetResult();
+            base.OnInitialized(e);
+
+            var json = await this.GetPaymentListJson();
             var l = JsonConvert.DeserializeObject<List<PaymentRecord>>(json);
             foreach (var item in l)
             {
@@ -42,20 +41,13 @@ namespace WebApiWpfApp1
             }
             this.PaymentListBox.ItemsSource = this._PaymentList;
         }
-        private String GetPaymentListJson_Dummy()
-        {
-            var db = new Database();
-            db.ConnectionString = System.IO.File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
-            var l = db.SelectPaymentRecords();
-            return JsonConvert.SerializeObject(l);
-        }
         private async Task<String> GetPaymentListJson()
         {
             //Web APIから取得
             var cl = new HttpClient();
             var content = new StringContent(JsonConvert.SerializeObject(new { }), Encoding.UTF8, "application/json");
             //C#5.0 非同期 状態マシーン State Machine
-            var res = await cl.PostAsync("https://localhost:44387/Api/Payment/List/Get", content);
+            var res = await cl.PostAsync("https://localhost:5001/Api/Payment/List/Get", content);
             var json = await res.Content.ReadAsStringAsync();
 
             return json;
