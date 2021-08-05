@@ -33,8 +33,13 @@ namespace WebApiWpfApp1
         {
             base.OnInitialized(e);
 
+            await this.SetPaymentList();
+        }
+        private async Task SetPaymentList()
+        {
             var json = await this.GetPaymentListJson();
             var l = JsonConvert.DeserializeObject<List<PaymentRecord>>(json);
+            _PaymentList.Clear();
             foreach (var item in l)
             {
                 _PaymentList.Add(item);
@@ -57,20 +62,24 @@ namespace WebApiWpfApp1
             var paymentRecord = this.PaymentListBox.SelectedItem as DbAccessDatabase.PaymentRecord;
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            //this.AddByApi();
+            var w = new EditRecordWindow();
+            w.ShowDialog();
+
+            //一覧の更新処理
+            await this.SetPaymentList();
         }
         private void PaymentListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var r = this.PaymentListBox.SelectedItem as PaymentRecord;
-            //var w = new EditRecordWindow(r);
-            //w.ShowDialog();
+            var w = new EditRecordWindow(r);
+            w.ShowDialog();
 
-            //if (w.Deleted == true)
-            //{
-            //    this._PaymentList.Remove(r);
-            //}
+            if (w.Deleted == true)
+            {
+                this._PaymentList.Remove(r);
+            }
         }
 
         private async void ReloadButton_Click(object sender, RoutedEventArgs e)

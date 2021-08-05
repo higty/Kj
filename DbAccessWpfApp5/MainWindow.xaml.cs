@@ -53,7 +53,7 @@ namespace DbAccessWpfApp5
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this.AddByApi();
+            this.Add();
         }
         private void Add()
         {
