@@ -29,10 +29,10 @@ namespace CSharpDatabase
         }
         private static SqlCommand CreateInsertCommand()
         {
-            var cm = new SqlCommand("insert into Payment(PaymentCD,Title,Date,Price) values(NEWID(), '@Title', '@Date', @Price)");
+            var cm = new SqlCommand("insert into Payment(PaymentCD,Title,Date,Price) values(NEWID(), @Title, @Date, @Price)");
 
             cm.Parameters.Add(new SqlParameter("@Title", SqlDbType.NVarChar, 100) { Value = "チョコポッキー" });
-            cm.Parameters.Add(new SqlParameter("@Date", SqlDbType.Date) { Value = "2021-08-31" });
+            cm.Parameters.Add(new SqlParameter("@Date", SqlDbType.Date) { Value = "2021-08-30" });
             cm.Parameters.Add(new SqlParameter("@Price", SqlDbType.Int) { Value = "210" });
 
             return cm;
