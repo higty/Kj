@@ -23,11 +23,17 @@ namespace WebApiWpfApp1
         private PaymentRecord _Record = null;
         public Boolean Deleted { get; set; } = false;
 
+        /// <summary>
+        /// 追加の時に呼ばれるコンストラクタ
+        /// </summary>
         public EditRecordWindow()
         {
             InitializeComponent();
             this.DeleteButton.Visibility = Visibility.Hidden;
         }
+        /// <summary>
+        /// 編集（保存・削除）の時に呼ばれるコンストラクタ
+        /// </summary>
         public EditRecordWindow(PaymentRecord record)
         {
             InitializeComponent();
