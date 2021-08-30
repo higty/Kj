@@ -37,5 +37,14 @@ namespace CSharpDatabase
 
             return cm;
         }
+
+        public async void Button1_Click(object sender, EventArgs e)
+        {
+            var db = new Database(Program.ConnectionString);
+            var cm = CreateInsertCommand();
+            var x = await db.ExecuteNonQueryAsync(cm);
+
+            //MessageBox.Show("");
+        }
     }
 }
