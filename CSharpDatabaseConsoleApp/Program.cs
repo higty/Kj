@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 
 namespace CSharpDatabase 
 {
@@ -11,7 +13,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            ExecuteInsertCommand();
+            CreateInsertCommand3();
 
             Console.WriteLine("Press enter exit...");
             Console.ReadLine();
@@ -36,6 +38,68 @@ namespace CSharpDatabase
             cm.Parameters.Add(new SqlParameter("@Price", SqlDbType.Int) { Value = "210" });
 
             return cm;
+        }
+        private static SqlCommand CreateInsertCommand1()
+        {
+            var cm = new SqlCommand("insert into Payment(PaymentCD,Title,Date,Price) values(NEWID(), @Title, @Date, @Price)");
+
+            {
+                var p = new SqlParameter();
+                p.ParameterName = "@Title";
+                p.SqlDbType = SqlDbType.NVarChar;
+                p.Size = 100;
+                p.Value = "マヌカ蜜";
+                cm.Parameters.Add(p);
+            }
+            {
+                var p = new SqlParameter();
+                p.ParameterName = "@Date";
+                p.SqlDbType = SqlDbType.Date;
+                p.Value = "2021-09-07";
+                cm.Parameters.Add(p);
+            }
+            {
+                var p = new SqlParameter();
+                p.ParameterName = "@Price";
+                p.SqlDbType = SqlDbType.Int;
+                p.Value = "4000";
+                cm.Parameters.Add(p);
+            }
+
+            return cm;
+        }
+        private static SqlCommand CreateInsertCommand2()
+        {
+            var cm = new SqlCommand("insert into Payment(PaymentCD,Title,Date,Price) values(NEWID(), @Title, @Date, @Price)");
+
+            {
+                var p = cm.Parameters.Add("@Title", SqlDbType.NVarChar, 100);
+                p.Value = "レーズンパン（3斤）";
+            }
+            {
+                var p = cm.Parameters.Add("@Date", SqlDbType.Date);
+                p.Value = "2021-09-07";
+            }
+            {
+                var p = cm.Parameters.Add("@Title", SqlDbType.Int);
+                p.Value = "200";
+            }
+            return cm;
+        }
+        private static SqlCommand CreateInsertCommand3()
+        {
+            var cm = new SqlCommand("insert into Payment(PaymentCD,Title,Date,Price) values(NEWID(), @Title, @Date, @Price)");
+
+            cm.Parameters.AddParameter("@Title", SqlDbType.NVarChar, 100, "チョコポッキー");
+            cm.Parameters.AddParameter("@Date", SqlDbType.Date, "2021-08-30");
+            cm.Parameters.AddParameter("@Price", SqlDbType.Int, "210");
+
+            return cm;
+        }
+        public class Person
+        {
+            public String Name { get; set; }
+            public Int32 Age { get; set; }
         }
 
         public async void Button1_Click(object sender, EventArgs e)

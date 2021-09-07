@@ -80,11 +80,13 @@ namespace DbAccessDatabase
 
         public Boolean Insert(PaymentRecord record)
         {
+            var r = record;
+
             //DBにレコードをInsertする処理を書く
             using (var cn = new SqlConnection(this.ConnectionString))
             {
                 var sql = String.Format("insert into Payment values(NEWID(), '{0}', '{1}', {2})"
-                    , record.Title, record.Date, record.Price);
+                    , r.Title, r.Date, r.Price);
                 var cm = new SqlCommand(sql);
                 cm.Connection = cn;
                 cn.Open();
