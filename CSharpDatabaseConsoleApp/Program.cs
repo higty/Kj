@@ -19,7 +19,7 @@ namespace CSharpDatabase
         private static void ExecuteInsertQuery()
         {
             var db = new Database(Program.ConnectionString);
-            db.ExecuteNonQuery("insert into Payment values(NEWID(), '雪見大福', '2021-08-30', 160)");
+            db.ExecuteNonQuery("insert into Payment values(NEWID(), '雪見大福', '2021-08-30', 160)", 120);
         }
         private static void ExecuteInsertCommand()
         {

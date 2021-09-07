@@ -15,15 +15,14 @@ namespace CSharpDatabase
    
         public Int32 ExecuteNonQuery(String query)
         {
-            using (var cn = new SqlConnection(this.ConnectionString))
-            {
-                var cm = new SqlCommand(query);
-                cm.Connection = cn;
-                cn.Open();
-                var affectedRecordCount = cm.ExecuteNonQuery();
-                cn.Close();
-                return affectedRecordCount;
-            }
+            var cm = new SqlCommand(query);
+            return this.ExecuteNonQuery(cm);
+        }
+        public Int32 ExecuteNonQuery(String query, Int32 commandTimeout)
+        {
+            var cm = new SqlCommand(query);
+            cm.CommandTimeout = commandTimeout;
+            return this.ExecuteNonQuery(cm);
         }
         public Int32 ExecuteNonQuery(SqlCommand command)
         {
@@ -40,15 +39,8 @@ namespace CSharpDatabase
         }
         public async Task<Int32> ExecuteNonQueryAsync(String query)
         {
-            using (var cn = new SqlConnection(this.ConnectionString))
-            {
-                var cm = new SqlCommand(query);
-                cm.Connection = cn;
-                cn.Open();
-                var affectedRecordCount = await cm.ExecuteNonQueryAsync();
-                cn.Close();
-                return affectedRecordCount;
-            }
+            var cm = new SqlCommand(query);
+            return await this.ExecuteNonQueryAsync(cm);
         }
         public async Task<Int32> ExecuteNonQueryAsync(SqlCommand command)
         {
