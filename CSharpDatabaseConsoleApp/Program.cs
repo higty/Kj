@@ -90,9 +90,9 @@ namespace CSharpDatabase
         {
             var cm = new SqlCommand("insert into Payment(PaymentCD,Title,Date,Price) values(NEWID(), @Title, @Date, @Price)");
 
-            cm.Parameters.AddParameter("@Title", SqlDbType.NVarChar, 100, "チョコポッキー");
-            cm.Parameters.AddParameter("@Date", SqlDbType.Date, "2021-08-30");
-            cm.Parameters.AddParameter("@Price", SqlDbType.Int, "210");
+            cm.AddParameter("@Title", SqlDbType.NVarChar, 100, "チョコポッキー");
+            cm.AddParameter("@Date", SqlDbType.Date, "2021-08-30");
+            cm.AddParameter("@Price", SqlDbType.Int, "210");
 
             return cm;
         }
