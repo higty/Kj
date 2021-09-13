@@ -13,14 +13,35 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            var personList = CreatePersonList();
-
-            var footballPlayerList = FilterPerson(personList, IsSportsFootball);
-            var over30List = FilterPerson(personList, IsAgeOver30);
+            Action_Func();
 
             Console.WriteLine("Press enter exit...");
             Console.ReadLine();
         }
+
+        private static void Action_Func()
+        {
+            Action md1 = ExecuteInsertQuery;
+            Func<String, Boolean> f1 = Method1;
+            Action<String, Int32> md3 = Method1;
+
+            md1();
+        }
+        private static Boolean Method1(string name)
+        {
+            return true;
+        }
+        private static void Method1(string name, Int32 age)
+        {
+        }
+        private static void FilterPersonTest()
+        {
+            var personList = CreatePersonList();
+
+            var footballPlayerList = FilterPerson(personList, IsSportsFootball);
+            var over30List = FilterPerson(personList, IsAgeOver30);
+        }
+
         private static List<Person> CreatePersonList()
         {
             var l = new List<Person>();
