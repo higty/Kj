@@ -13,11 +13,52 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            CreateInsertCommand3();
+            var personList = CreatePersonList();
+
+            var footballPlayerList = FilterPerson(personList, IsSportsFootball);
+            var over30List = FilterPerson(personList, IsAgeOver30);
 
             Console.WriteLine("Press enter exit...");
             Console.ReadLine();
         }
+        private static List<Person> CreatePersonList()
+        {
+            var l = new List<Person>();
+
+            l.Add(new Person("Messi", 34, Gender.Man, "サッカー"));
+            l.Add(new Person("C.Ronald", 38, Gender.Man, "サッカー"));
+            l.Add(new Person("久保", 19, Gender.Man, "サッカー"));
+            l.Add(new Person("R.Federer", 34, Gender.Man, "テニス"));
+            l.Add(new Person("Nadal", 35, Gender.Man, "テニス"));
+            l.Add(new Person("錦織", 32, Gender.Man, "テニス"));
+            l.Add(new Person("ズベレフ", 23, Gender.Man, "テニス"));
+
+            return l;
+        }
+        private static List<Person> FilterPerson(List<Person> personList, Func<Person, Boolean> filterFunc)
+        {
+            var newPersonList = new List<Person>();
+
+            foreach (var item in personList)
+            {
+                if (filterFunc(item) == true)
+                {
+                    newPersonList.Add(item);
+                }
+            }
+            return newPersonList;
+
+        }
+        private static Boolean IsSportsFootball(Person person)
+        {
+            return person.Sports == "サッカー";
+        }
+        private static Boolean IsAgeOver30(Person person)
+        {
+            return person.Age > 30;
+        }
+
+
         private static void ExecuteInsertQuery()
         {
             var db = new Database(Program.ConnectionString);
@@ -96,11 +137,8 @@ namespace CSharpDatabase
 
             return cm;
         }
-        public class Person
-        {
-            public String Name { get; set; }
-            public Int32 Age { get; set; }
-        }
+
+
 
         public async void Button1_Click(object sender, EventArgs e)
         {
