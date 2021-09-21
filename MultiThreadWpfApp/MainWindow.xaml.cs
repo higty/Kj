@@ -29,22 +29,17 @@ namespace MultiThreadWpfApp
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            var thd = new Thread(this.ExecuteOnBackgroundThread);
-            thd.IsBackground = true;
-            thd.Start();
+            var sv = new WorkerThreadService();
+            sv.Executing += WorkerThreadService_Executing;
+            sv.StartThread();
         }
-        private void ExecuteOnBackgroundThread()
+
+        private void WorkerThreadService_Executing(object sender, WorkerThreadServiceEventArgs e)
         {
-            while (true)
+            this.Dispatcher.Invoke(() =>
             {
-                var now = DateTime.Now.ToString("HH:MM:ss.fffffff");
-                this.Dispatcher.Invoke(() =>
-                {
-                    this.LogTextbox.Text += now + Environment.NewLine;
-                });
-                Debug.WriteLine(now);
-                Thread.Sleep(1000);
-            }
+                this.LogTextbox.Text += e.ExecuteTime.ToString("HH:mm:ss.fffffff") + Environment.NewLine;
+            });
         }
     }
 }
