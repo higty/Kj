@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiWpfApp1", "WebApiWpfA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvancedConsoleApp1", "AdvancedConsoleApp1\AdvancedConsoleApp1.csproj", "{D1BBC191-1F80-4D18-8806-C491DA8C09C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDatabase", "CSharpDatabase\CSharpDatabase.csproj", "{BEA6FA2A-3913-464D-99BA-1671DCAA3172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpDatabase", "CSharpDatabase\CSharpDatabase.csproj", "{BEA6FA2A-3913-464D-99BA-1671DCAA3172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDatabaseConsoleApp", "CSharpDatabaseConsoleApp\CSharpDatabaseConsoleApp.csproj", "{88BECF24-701F-492C-A292-2822393384A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpDatabaseConsoleApp", "CSharpDatabaseConsoleApp\CSharpDatabaseConsoleApp.csproj", "{88BECF24-701F-492C-A292-2822393384A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreadWpfApp", "MultiThreadWpfApp\MultiThreadWpfApp.csproj", "{74A6923E-0B83-497F-8B71-94464FECD81F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{88BECF24-701F-492C-A292-2822393384A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88BECF24-701F-492C-A292-2822393384A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88BECF24-701F-492C-A292-2822393384A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A6923E-0B83-497F-8B71-94464FECD81F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A6923E-0B83-497F-8B71-94464FECD81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A6923E-0B83-497F-8B71-94464FECD81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A6923E-0B83-497F-8B71-94464FECD81F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
