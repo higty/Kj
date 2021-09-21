@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ThreadService;
 
 namespace DbAccessWebApp1
 {
@@ -54,6 +55,15 @@ namespace DbAccessWebApp1
                     name: "default",
                     pattern: "{controller=Payment}/{action=List}/{id?}");
             });
+
+
+            //var sv = new WorkerThreadService();
+            //sv.Executing += WorkerThreadService_Executing;
+            //sv.StartThread();
+        }
+
+        private void WorkerThreadService_Executing(object sender, WorkerThreadServiceEventArgs e)
+        {
         }
     }
 }

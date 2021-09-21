@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DbAccessDatabase\DbAccessDatabase.csproj" />
+    <ProjectReference Include="..\ThreadService\ThreadService.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

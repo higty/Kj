@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 
-namespace MultiThreadWpfApp
+namespace ThreadService
 {
     public class WorkerThreadServiceEventArgs  : EventArgs
     {

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using System.Diagnostics;
+using ThreadService;
 
 namespace MultiThreadWpfApp
 {
