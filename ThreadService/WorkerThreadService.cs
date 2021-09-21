@@ -21,13 +21,13 @@ namespace ThreadService
 
         public void StartThread()
         {
-            var thd = new Thread(this.ExecuteOnBackgroundThread);
+            var thd = new Thread(this.Execute);
             thd.Name = "MyThread1";
             thd.IsBackground = true;
             thd.Start();
         }
 
-        private void ExecuteOnBackgroundThread()
+        private void Execute()
         {
             while (true)
             {
