@@ -13,7 +13,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            ExecuteInsertQuery_2();
+            ExecuteInsertQueryWithTransaction();
         }
 
         private static void Action_Func()
@@ -77,24 +77,51 @@ namespace CSharpDatabase
         }
 
 
-        private static void ExecuteInsertQuery_2()
+        private static void ExecuteInsertQueryWithTransaction()
+        {
+            using (var db = new Database(Program.ConnectionString))
+            {
+                try
+                {
+                    db.Open();
+                    db.BeginTransaction(IsolationLevel.ReadCommitted);
+                    db.ExecuteNonQuery("insertinto Payment values(NEWID(), 'バターフィナンシェ', '2021-09-30', 560)");
+                    db.ExecuteNonQuery("insertinto Payment values(NEWID(), 'がりがり君', '2021-09-30', 100)");
+
+                    db.CommitTransaction();
+                }
+                catch (Exception ex)
+                {
+                    //エラーメッセージの表示
+                    //エラーログに記録
+                    //システム管理者にメールかTeamsでメッセージ送信
+                    db.RollbackTransaction();
+                }
+            }
+        }
+        private static void ExecuteInsertQueryWithTransaction_()
         {
             var db = new Database(Program.ConnectionString);
+
             try
             {
                 db.Open();
-                db.ExecuteNonQuery("insert into Payment values(NEWID(), '雪見大福', '2021-08-30', 160)");
-                db.ExecuteNonQuery("insert into Payment values(NEWID(), 'がりがり君', '2021-08-30', 100)");
+                db.BeginTransaction(IsolationLevel.ReadCommitted);
+                db.ExecuteNonQuery("insert into Payment values(NEWID(), 'バターフィナンシェ', '2021-09-30', 560)");
+                db.ExecuteNonQuery("insert into Payment values(NEWID(), 'がりがり君', '2021-09-30', 100)");
+
+                db.CommitTransaction();
             }
             catch (Exception ex)
             {
                 //エラーメッセージの表示
                 //エラーログに記録
                 //システム管理者にメールかTeamsでメッセージ送信
+                db.RollbackTransaction();
             }
             finally
             {
-                db.Close();
+                db.Dispose();
             }
         }
         private static void ExecuteInsertQuery()

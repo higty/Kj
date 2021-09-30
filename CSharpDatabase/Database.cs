@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Data;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 namespace CSharpDatabase
 {
-    public class Database
+    public class Database : IDisposable
     {
         private SqlConnection _Connection = null;
+        private SqlTransaction _Transaction = null;
 
         public String ConnectionString { get; init; } = "";
 
@@ -36,6 +38,19 @@ namespace CSharpDatabase
             return _Connection != null;
         }
 
+        public void BeginTransaction(IsolationLevel isolationLevel)
+        {
+            _Transaction = _Connection.BeginTransaction(isolationLevel);
+        }
+        public void CommitTransaction()
+        {
+            _Transaction.Commit();
+        }
+        public void RollbackTransaction()
+        {
+            _Transaction.Rollback();
+        }
+
         public Int32 ExecuteNonQuery(String query)
         {
             var cm = new SqlCommand(query);
@@ -52,18 +67,25 @@ namespace CSharpDatabase
             var cm = command;
             var isOpen = this.IsOpen();
 
-            if (isOpen == false)
+            try
             {
-                this.Open();
-            }
-            cm.Connection = _Connection;
-            var affectedRecordCount = cm.ExecuteNonQuery();
+                if (isOpen == false)
+                {
+                    this.Open();
+                }
+                cm.Connection = _Connection;
+                cm.Transaction = _Transaction;
+                var affectedRecordCount = cm.ExecuteNonQuery();
 
-            if (isOpen == false)
-            {
-                this.Close();
+                return affectedRecordCount;
             }
-            return affectedRecordCount;
+            finally
+            {
+                if (isOpen == false)
+                {
+                    this.Close();
+                }
+            }
         }
         public async Task<Int32> ExecuteNonQueryAsync(String query)
         {
@@ -82,6 +104,11 @@ namespace CSharpDatabase
                 cn.Close();
                 return affectedRecordCount;
             }
+        }
+
+        public void Dispose()
+        {
+            this.Close();
         }
     }
 }
