@@ -13,10 +13,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            Action_Func();
-
-            Console.WriteLine("Press enter exit...");
-            Console.ReadLine();
+            ExecuteInsertQuery_2();
         }
 
         private static void Action_Func()
@@ -80,6 +77,26 @@ namespace CSharpDatabase
         }
 
 
+        private static void ExecuteInsertQuery_2()
+        {
+            var db = new Database(Program.ConnectionString);
+            try
+            {
+                db.Open();
+                db.ExecuteNonQuery("insert into Payment values(NEWID(), '雪見大福', '2021-08-30', 160)");
+                db.ExecuteNonQuery("insert into Payment values(NEWID(), 'がりがり君', '2021-08-30', 100)");
+            }
+            catch (Exception ex)
+            {
+                //エラーメッセージの表示
+                //エラーログに記録
+                //システム管理者にメールかTeamsでメッセージ送信
+            }
+            finally
+            {
+                db.Close();
+            }
+        }
         private static void ExecuteInsertQuery()
         {
             var db = new Database(Program.ConnectionString);
