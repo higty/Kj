@@ -19,6 +19,13 @@ namespace ThreadService
     {
         public event EventHandler<WorkerThreadServiceEventArgs> Executing;
 
+        public DatabaseSetting Setting { get; private set; }
+
+        public WorkerThreadService(DatabaseSetting setting)
+        {
+            this.Setting = setting;
+        }
+
         public void StartThread()
         {
             var thd = new Thread(this.Execute);

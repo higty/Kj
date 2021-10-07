@@ -28,11 +28,35 @@ namespace MultiThreadWpfApp
             InitializeComponent();
         }
 
+        protected override void OnInitialized(EventArgs e)
+        {
+            MyApp.Current.Initialize();
+
+            base.OnInitialized(e);
+        }
+
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            var sv = new WorkerThreadService();
+            var sv = new WorkerThreadService(MyApp.Current.DatabaseSetting);
             sv.Executing += WorkerThreadService_Executing;
             sv.StartThread();
+        }
+        private void ThreadPoolSample()
+        {
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                //Do something...
+            });
+            ThreadPool.QueueUserWorkItem(MyStaticMethod);
+            ThreadPool.QueueUserWorkItem(this.MyInstanceMethod);//Thread2
+        }
+        private static void MyStaticMethod(Object state)
+        {
+
+        }
+        private void MyInstanceMethod(Object state)
+        {
+
         }
 
         private void WorkerThreadService_Executing(object sender, WorkerThreadServiceEventArgs e)
