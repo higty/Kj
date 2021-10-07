@@ -41,6 +41,14 @@ namespace MultiThreadWpfApp
             sv.Executing += WorkerThreadService_Executing;
             sv.StartThread();
         }
+
+        private void DatabaseSample()
+        {
+            using (var db = MyApp.Current.GetSqlConnection())
+            {
+                //Databaseへ処理
+            }
+        }
         private void ThreadPoolSample()
         {
             ThreadPool.QueueUserWorkItem(o =>
@@ -48,7 +56,7 @@ namespace MultiThreadWpfApp
                 //Do something...
             });
             ThreadPool.QueueUserWorkItem(MyStaticMethod);
-            ThreadPool.QueueUserWorkItem(this.MyInstanceMethod);//Thread2
+            ThreadPool.QueueUserWorkItem(this.MyInstanceMethod);
         }
         private static void MyStaticMethod(Object state)
         {
