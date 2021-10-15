@@ -13,7 +13,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            ExecuteInsertQueryWithTransaction();
+            FilterPersonTest();
         }
 
         private static void Action_Func()
@@ -37,6 +37,16 @@ namespace CSharpDatabase
 
             var footballPlayerList = FilterPerson(personList, IsSportsFootball);
             var over30List = FilterPerson(personList, IsAgeOver30);
+            var over25List = FilterPerson(personList, IsAgeOver25);
+
+            //ラムダ式
+            var over27List = FilterPerson(personList, p =>
+            {
+                return p.Age > 27;
+            });
+            var over27List1 = FilterPerson(personList, p => p.Age > 27);
+
+            var over22List = FilterPerson(personList, p => p.Age > 22);
         }
 
         private static List<Person> CreatePersonList()
@@ -74,6 +84,10 @@ namespace CSharpDatabase
         private static Boolean IsAgeOver30(Person person)
         {
             return person.Age > 30;
+        }
+        private static Boolean IsAgeOver25(Person person)
+        {
+            return person.Age > 25;
         }
 
 
