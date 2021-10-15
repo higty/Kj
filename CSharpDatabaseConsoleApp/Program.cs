@@ -10,6 +10,7 @@ namespace CSharpDatabase
     class Program
     {
         public static readonly String ConnectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+        private static Func<Person, Boolean> myFilter1;
 
         static void Main(string[] args)
         {
@@ -39,14 +40,25 @@ namespace CSharpDatabase
             var over30List = FilterPerson(personList, IsAgeOver30);
             var over25List = FilterPerson(personList, IsAgeOver25);
 
-            //ラムダ式
+            //ラムダ式。名前が不要。定義した場所で使用されるので別でメソッドを定義するよりも可読性が高い。
+            //使い捨て用途。
             var over27List = FilterPerson(personList, p =>
             {
                 return p.Age > 27;
             });
             var over27List1 = FilterPerson(personList, p => p.Age > 27);
-
             var over22List = FilterPerson(personList, p => p.Age > 22);
+
+            Program.myFilter1 = p => p.Age > 21 && (p.Sports == "サッカー" || p.Sports == "テニス");
+
+            //パフォーマンスはほぼ同じ。
+            var list1 = FilterPerson(personList, p => p.Age > 20 && p.Sports == "サッカー");
+            var list2 = FilterPerson(personList, myFilter1);
+            var list3 = FilterPerson(personList, IsAgeOver21_Soccer_Tennis);
+
+            //変数束縛で裏でクラスが生成されているのでほんの少しメモリを消費する。
+            var age = 25;
+            var list4 = FilterPerson(personList, p => p.Age > age);
         }
 
         private static List<Person> CreatePersonList()
@@ -88,6 +100,10 @@ namespace CSharpDatabase
         private static Boolean IsAgeOver25(Person person)
         {
             return person.Age > 25;
+        }
+        private static Boolean IsAgeOver21_Soccer_Tennis(Person person)
+        {
+            return person.Age > 21 && (person.Sports == "サッカー" || person.Sports == "テニス");
         }
 
 
@@ -226,6 +242,19 @@ namespace CSharpDatabase
             var x = await db.ExecuteNonQueryAsync(cm);
 
             //MessageBox.Show("");
+        }
+
+        public static void SearchButton_Click(object sender, EventArgs e)
+        {
+            var md = CreateLambdaFromUserInput();
+            Program.myFilter1 = md;
+        }
+        private static Func<Person, Boolean> CreateLambdaFromUserInput()
+        {
+            var age = 22;//←ユーザーの入力
+            var text = "サッカー";//←ユーザーの入力
+            Func<Person, Boolean> md = p => p.Age > age && p.Sports == text;
+            return md;
         }
     }
 }
