@@ -18,7 +18,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            FilterAndSelectToAnonymousClass();
+            FilterTeamAndSelectToAnonymousClass();
 
         }
 
@@ -115,27 +115,31 @@ namespace CSharpDatabase
 
             Console.ReadLine();
         }
-        private static void FilterAndSelectToAnonymousClass()
+        private static void FilterPersonAndSelectToAnonymousClass()
         {
             var personList = CreatePersonList();
 
             var filterPersonList = FilterPerson(personList, p => p.Age > 22);
+            var l = Select(filterPersonList, p => new
             {
-                var l = Select(filterPersonList, p => new
-                {
-                    Name = p.Name,
-                    Address = p.Address,
-                });
-                var json = JsonConvert.SerializeObject(l, Formatting.Indented);
-                Console.WriteLine(json);
-            }
-        }
-        class AnonymousClassSample1
-        {
-            public String Name { get; set; }
-            public String Address { get; set; }
+                Name = p.Name,
+                Address = p.Address,
+            });
+            var json = JsonConvert.SerializeObject(l, Formatting.Indented);
+            Console.WriteLine(json);
         }
 
+        private static void FilterTeamAndSelectToAnonymousClass()
+        {
+            var teamList = CreateTeamList();
+
+            var l = Select(teamList, el => new
+            {
+                Name = el.Name,
+            }); ;
+            var json = JsonConvert.SerializeObject(l, Formatting.Indented);
+            Console.WriteLine(json);
+        }
         private static List<Person> CreatePersonList()
         {
             var l = new List<Person>();
@@ -150,6 +154,18 @@ namespace CSharpDatabase
 
             return l;
         }
+        private static List<Team> CreateTeamList()
+        {
+            var l = new List<Team>();
+
+            l.Add(new Team("FC.Barcelona", "スペイン"));
+            l.Add(new Team("マンチェスターU", "イングランド"));
+            l.Add(new Team("マジョルカ", "スペイン"));
+
+            return l;
+        }
+
+
         private static List<Person> FilterPerson(List<Person> personList, Func<Person, Boolean> filterFunc)
         {
             var newPersonList = new List<Person>();
@@ -165,16 +181,38 @@ namespace CSharpDatabase
 
         }
 
-        private static List<T> Select<T>(List<Person> personList, Func<Person, T> selectFunc)
+
+        private static List<TResult> Select<T, TResult>(List<T> list, Func<T, TResult> selectFunc)
         {
-            var l = new List<T>();
-            foreach (var item in personList)
+            var l = new List<TResult>();
+            foreach (var item in list)
             {
                 var r = selectFunc(item);
                 l.Add(r);
             }
             return l;
         }
+        //private static List<TResult> Select<TResult>(List<Person> personList, Func<Person, TResult> selectFunc)
+        //{
+        //    var l = new List<TResult>();
+        //    foreach (var item in personList)
+        //    {
+        //        var r = selectFunc(item);
+        //        l.Add(r);
+        //    }
+        //    return l;
+        //}
+        //private static List<TResult> Select<TResult>(List<Team> teamList, Func<Team, TResult> selectFunc)
+        //{
+        //    var l = new List<TResult>();
+        //    foreach (var item in teamList)
+        //    {
+        //        var r = selectFunc(item);
+        //        l.Add(r);
+        //    }
+        //    return l;
+        //}
+
         private static List<PersonName> ConvertToPersonName(List<Person> personList)
         {
             var l = new List<PersonName>();

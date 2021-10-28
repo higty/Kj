@@ -35,6 +35,18 @@ namespace CSharpDatabase
                 , this.Name, this.Age, this.Gender.ToString(), this.Sports);
         }
     }
+    public class Team
+    {
+        public String Name { get; set; }
+        public String Location { get; set; }
+
+        public Team() { }
+        public Team(String name, String location)
+        {
+            this.Name = name;
+            this.Location = location;
+        }
+    }
 
     public class PersonName
     {
@@ -50,4 +62,11 @@ namespace CSharpDatabase
         public String Name { get; set; }
         public String Address { get; set; }
     }
+
+    class AnonymousClassSample1
+    {
+        public String Name { get; set; }
+        public String Address { get; set; }
+    }
+
 }
