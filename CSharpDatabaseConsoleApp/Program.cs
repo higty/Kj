@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            FilterPersonTest();
+            ListPersonNameList();
 
         }
 
@@ -73,6 +74,18 @@ namespace CSharpDatabase
             var age = 25;
             var list4 = FilterPerson(personList, p => p.Age > age);
         }
+        private static void ListPersonNameList()
+        {
+            var personList = CreatePersonList();
+
+            var filterPersonList = FilterPerson(personList, p => p.Age > 22);
+            var l = ConvertToPersonName(filterPersonList);
+            var json = JsonConvert.SerializeObject(l, Formatting.Indented);
+            Console.WriteLine(json);
+            Console.WriteLine(JsonConvert.SerializeObject(filterPersonList, Formatting.Indented));
+
+            Console.ReadLine();
+        }
 
         private static List<Person> CreatePersonList()
         {
@@ -102,6 +115,18 @@ namespace CSharpDatabase
             return newPersonList;
 
         }
+        private static List<PersonName> ConvertToPersonName(List<Person> personList)
+        {
+            var l = new List<PersonName>();
+            foreach (var item in personList)
+            {
+                var r = new PersonName();
+                r.Name = item.Name;
+                l.Add(r);
+            }
+            return l;
+        }
+
         private static Boolean IsSportsFootball(Person person)
         {
             return person.Sports == "サッカー";
