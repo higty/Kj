@@ -79,9 +79,38 @@ namespace CSharpDatabase
             var personList = CreatePersonList();
 
             var filterPersonList = FilterPerson(personList, p => p.Age > 22);
-            var l = ConvertToPersonName(filterPersonList);
-            var json = JsonConvert.SerializeObject(l, Formatting.Indented);
-            Console.WriteLine(json);
+            {
+                var l = Select(filterPersonList, p =>
+                {
+                    var r = new PersonName();
+                    r.Name = p.Name;
+                    return r;
+                });
+                var json = JsonConvert.SerializeObject(l, Formatting.Indented);
+                Console.WriteLine(json);
+            }
+            {
+                var l = Select(filterPersonList, p =>
+                {
+                    var r = new PersonNameAge();
+                    r.Name = p.Name;
+                    r.Age = p.Age;
+                    return r;
+                });
+                var json = JsonConvert.SerializeObject(l, Formatting.Indented);
+                Console.WriteLine(json);
+            }
+            {
+                var l = Select(filterPersonList, p =>
+                {
+                    var r = new PersonNameAddress();
+                    r.Name = p.Name;
+                    r.Address = p.Address;
+                    return r;
+                });
+                var json = JsonConvert.SerializeObject(l, Formatting.Indented);
+                Console.WriteLine(json);
+            }
             Console.WriteLine(JsonConvert.SerializeObject(filterPersonList, Formatting.Indented));
 
             Console.ReadLine();
@@ -115,6 +144,18 @@ namespace CSharpDatabase
             return newPersonList;
 
         }
+
+        private static List<T> Select<T>(List<Person> personList, Func<Person, T> selectFunc)
+            where T: new()
+        {
+            var l = new List<T>();
+            foreach (var item in personList)
+            {
+                var r = selectFunc(item);
+                l.Add(r);
+            }
+            return l;
+        }
         private static List<PersonName> ConvertToPersonName(List<Person> personList)
         {
             var l = new List<PersonName>();
@@ -122,6 +163,30 @@ namespace CSharpDatabase
             {
                 var r = new PersonName();
                 r.Name = item.Name;
+                l.Add(r);
+            }
+            return l;
+        }
+        private static List<PersonNameAge> ConvertToPersonNameAge(List<Person> personList)
+        {
+            var l = new List<PersonNameAge>();
+            foreach (var item in personList)
+            {
+                var r = new PersonNameAge();
+                r.Name = item.Name;
+                r.Age = item.Age;
+                l.Add(r);
+            }
+            return l;
+        }
+        private static List<PersonNameAddress> ConvertToPersonNameAddress(List<Person> personList)
+        {
+            var l = new List<PersonNameAddress>();
+            foreach (var item in personList)
+            {
+                var r = new PersonNameAddress();
+                r.Name = item.Name;
+                r.Address = item.Address;
                 l.Add(r);
             }
             return l;

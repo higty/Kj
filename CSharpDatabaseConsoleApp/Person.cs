@@ -40,4 +40,14 @@ namespace CSharpDatabase
     {
         public String Name { get; set; }
     }
+    public class PersonNameAge
+    {
+        public String Name { get; set; }
+        public Int32 Age { get; set; }
+    }
+    public class PersonNameAddress
+    {
+        public String Name { get; set; }
+        public String Address { get; set; }
+    }
 }
