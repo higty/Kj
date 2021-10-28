@@ -136,7 +136,7 @@ namespace CSharpDatabase
             var l = Select(teamList, el => new
             {
                 Name = el.Name,
-            }); ;
+            });
             var json = JsonConvert.SerializeObject(l, Formatting.Indented);
             Console.WriteLine(json);
         }
@@ -184,6 +184,7 @@ namespace CSharpDatabase
 
         private static List<TResult> Select<T, TResult>(List<T> list, Func<T, TResult> selectFunc)
         {
+            //LINQ
             var l = new List<TResult>();
             foreach (var item in list)
             {
