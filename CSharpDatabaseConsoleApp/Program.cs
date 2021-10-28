@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace CSharpDatabase 
 {
+    public delegate void NoReturnValueMethodDelegate(string name, Int32 age);
+    public delegate Boolean Method1Delegate(string name);
+
     class Program
     {
         public static readonly String ConnectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
@@ -15,21 +18,27 @@ namespace CSharpDatabase
         static void Main(string[] args)
         {
             FilterPersonTest();
+
         }
 
         private static void Action_Func()
         {
             Action md1 = ExecuteInsertQuery;
             Func<String, Boolean> f1 = Method1;
-            Action<String, Int32> md3 = Method1;
+            Action<String, Int32> md3 = Method2;
 
             md1();
+        }
+        private static void DelegateSample()
+        {
+            Method1Delegate md1 = Method1;
+            NoReturnValueMethodDelegate md2 = Method2;
         }
         private static Boolean Method1(string name)
         {
             return true;
         }
-        private static void Method1(string name, Int32 age)
+        private static void Method2(string name, Int32 age)
         {
         }
         private static void FilterPersonTest()
@@ -43,6 +52,10 @@ namespace CSharpDatabase
             //ラムダ式。名前が不要。定義した場所で使用されるので別でメソッドを定義するよりも可読性が高い。
             //使い捨て用途。
             var over27List = FilterPerson(personList, p =>
+            {
+                return p.Age > 27;
+            });
+            var over27List0 = FilterPerson(personList, (Person p) =>
             {
                 return p.Age > 27;
             });
