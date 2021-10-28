@@ -18,7 +18,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            ListPersonNameList();
+            FilterAndSelectToAnonymousClass();
 
         }
 
@@ -115,6 +115,26 @@ namespace CSharpDatabase
 
             Console.ReadLine();
         }
+        private static void FilterAndSelectToAnonymousClass()
+        {
+            var personList = CreatePersonList();
+
+            var filterPersonList = FilterPerson(personList, p => p.Age > 22);
+            {
+                var l = Select(filterPersonList, p => new
+                {
+                    Name = p.Name,
+                    Address = p.Address,
+                });
+                var json = JsonConvert.SerializeObject(l, Formatting.Indented);
+                Console.WriteLine(json);
+            }
+        }
+        class AnonymousClassSample1
+        {
+            public String Name { get; set; }
+            public String Address { get; set; }
+        }
 
         private static List<Person> CreatePersonList()
         {
@@ -146,7 +166,6 @@ namespace CSharpDatabase
         }
 
         private static List<T> Select<T>(List<Person> personList, Func<Person, T> selectFunc)
-            where T: new()
         {
             var l = new List<T>();
             foreach (var item in personList)
