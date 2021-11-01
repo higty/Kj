@@ -52,6 +52,8 @@ namespace ThreadService
     {
         private Thread _Thread = null;
         public Int32 CommandIntervalSeconds { get; set; } = 10;
+        public Int32 ExecutedCommandCountForInterval { get; set; } = 100;
+        public Int32 ThreadSleepSeconds { get; set; } = 4;
 
         private ConcurrentQueue<ServiceCommand> _CommandList = new ConcurrentQueue<ServiceCommand>();
 
@@ -69,6 +71,8 @@ namespace ThreadService
             {
                 var now = DateTime.Now;
                 var skipCommandList = new List<ServiceCommand>();
+
+                var executedCommandCount = 0;
                 while (_CommandList.TryDequeue(out var cm))
                 {
                     //ガード句
@@ -88,6 +92,10 @@ namespace ThreadService
                         _CommandList.Enqueue(cm);
                         Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss") + " BackgroundRetryService error.");
                     }
+                    executedCommandCount++;
+                    if (executedCommandCount >= this.ExecutedCommandCountForInterval) { break; }
+
+                    Thread.Sleep(100);
                 }
                 foreach (var cm in skipCommandList)
                 {
@@ -96,7 +104,7 @@ namespace ThreadService
                 Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss") + " BackgroundRetryService executed.");
                 Debug.WriteLine(_CommandList.Count + " command exists.");
 
-                Thread.Sleep(4 * 1000);
+                Thread.Sleep(this.ThreadSleepSeconds * 1000);
             }
         }
         public void AddCommand(ServiceCommand command)

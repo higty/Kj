@@ -48,6 +48,7 @@ namespace MultiThreadWpfApp
         {
             _BackgroundRetryService = new BackgroundRetryService();
             _BackgroundRetryService.CommandIntervalSeconds = 10;
+            _BackgroundRetryService.ExecutedCommandCountForInterval = 20;
             _BackgroundRetryService.StartThread();
         }
         private void AddCommandButton_Click(object sender, RoutedEventArgs e)
