@@ -75,7 +75,7 @@ namespace ThreadService
                 var executedCommandCount = 0;
                 while (_CommandList.TryDequeue(out var cm))
                 {
-                    //ガード句
+                    //ガード節
                     if (cm.PreviousExecutedTime > now.AddSeconds(-this.CommandIntervalSeconds))
                     {
                         skipCommandList.Add(cm);
