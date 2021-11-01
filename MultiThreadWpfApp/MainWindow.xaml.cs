@@ -47,11 +47,13 @@ namespace MultiThreadWpfApp
         private void StartBackgroundServiceButton_Click(object sender, RoutedEventArgs e)
         {
             _BackgroundRetryService = new BackgroundRetryService();
+            _BackgroundRetryService.CommandIntervalSeconds = 10;
             _BackgroundRetryService.StartThread();
         }
         private void AddCommandButton_Click(object sender, RoutedEventArgs e)
         {
-            var cm = new LogTableInsertCommand();
+            var now = DateTime.Now;
+            var cm = new LogTableInsertCommand(now, now, "Dump");
             _BackgroundRetryService.AddCommand(cm);
         }
 
