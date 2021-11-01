@@ -23,6 +23,7 @@ namespace MultiThreadWpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BackgroundRetryService _BackgroundRetryService = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,6 +34,8 @@ namespace MultiThreadWpfApp
             MyApp.Current.Initialize();
 
             base.OnInitialized(e);
+
+            MySingletonClass.Current.Name = "MyClass1";
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -40,6 +43,16 @@ namespace MultiThreadWpfApp
             var sv = new WorkerThreadService(MyApp.Current.DatabaseSetting);
             sv.Executing += WorkerThreadService_Executing;
             sv.StartThread();
+        }
+        private void StartBackgroundServiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            _BackgroundRetryService = new BackgroundRetryService();
+            _BackgroundRetryService.StartThread();
+        }
+        private void AddCommandButton_Click(object sender, RoutedEventArgs e)
+        {
+            var cm = new LogTableInsertCommand();
+            _BackgroundRetryService.AddCommand(cm);
         }
 
         private void DatabaseSample()

@@ -8,6 +8,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Start" Name="StartButton" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="34" Width="95" Click="StartButton_Click"/>
+        <Button Content="Start BackgroundService" Name="StartBackgroundServiceButton" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" Height="34" Width="175" 
+                Click="StartBackgroundServiceButton_Click"/>
+        <Button Content="Add Command" Name="AddCommandButton" HorizontalAlignment="Left" Margin="290,10,0,0" VerticalAlignment="Top" Height="34" Width="95" 
+                Click="AddCommandButton_Click"/>
         <TextBox x:Name="LogTextbox"
             HorizontalAlignment="Center" Margin="0,49,0,0" 
                  AcceptsReturn="True"
