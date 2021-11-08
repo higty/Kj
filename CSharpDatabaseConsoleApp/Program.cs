@@ -18,7 +18,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            FilterTeamAndSelectToAnonymousClass1();
+            UseExtensionMethod();
         }
 
         private static void Action_Func()
