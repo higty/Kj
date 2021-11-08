@@ -8,7 +8,7 @@ namespace CSharpDatabase
 {
     public static class LinqExtensions
     {
-        public static List<T> Filter<T>(this List<T> list, Func<T, Boolean> filter)
+        public static List<T> Where<T>(this List<T> list, Func<T, Boolean> filter)
         {
             var l = new List<T>();
 

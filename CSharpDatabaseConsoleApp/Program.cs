@@ -169,10 +169,10 @@ namespace CSharpDatabase
             var scheduleList = CreateScheduleList();
             var today = DateTime.Now.Date;
 
-            var newScheduleTitleList = Select(Filter(scheduleList, el => el.StartDate > today.AddDays(3)), el => new
+            var newScheduleTitleList = Select(Select(Filter(scheduleList, el => el.StartDate > today.AddDays(3)), el => new
             {
                 Subject = el.Title,
-            });
+            }), el => el.Subject.Contains("4"));
             var json = JsonConvert.SerializeObject(newScheduleTitleList, Formatting.Indented);
             Console.WriteLine(json);
         }
@@ -200,12 +200,24 @@ namespace CSharpDatabase
             var newScheduleList = Filter(scheduleList, el => el.StartDate > today.AddDays(3));
             var scheduleTitleList = Select(scheduleList, el => new { el.Title });
 
-            var newScheduleList1 = scheduleList.Filter(el => el.StartDate > today.AddDays(3));
+            var newScheduleList1 = scheduleList.Where(el => el.StartDate > today.AddDays(3));
             var scheduleTitleList1 = scheduleList.Select(el => new { el.Title });
 
+            //LINQ = Language INtegrated Query
+            //select ScheduleCD,Title,StartDate,EndDate from DSchedule where StartDate > '2021-11-11'
             var scheduleTitleList2 = scheduleList
-                .Filter(el => el.StartDate > today.AddDays(3))
-                .Select(el => new { el.Title });
+                .Where(el => el.StartDate > today.AddDays(3))
+                .Select(el => new
+                {
+                    el.ScheduleCD,
+                    el.Title,
+                    el.StartDate,
+                    el.EndDate,
+                })
+                .Where(el => el.Title.Contains("4"));
+
+            var maxStart = scheduleList.Where(el => el.EndDate < today.AddDays(4))
+                .Max(el => el.StartDate);
 
             var json = JsonConvert.SerializeObject(scheduleTitleList2, Formatting.Indented);
             Console.WriteLine(json);

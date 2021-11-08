@@ -91,4 +91,22 @@ namespace CSharpDatabase
         }
     }
 
+    public class AppointmentRecord
+    {
+        private String _Title = "";
+
+        public String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                _Title = value;
+            }
+        }
+        public String Description { get; set; }
+    }
+
 }
