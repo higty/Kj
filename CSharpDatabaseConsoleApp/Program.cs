@@ -196,13 +196,18 @@ namespace CSharpDatabase
         {
             var scheduleList = CreateScheduleList();
             var today = DateTime.Now.Date;
-            var newScheduleList = Filter(scheduleList, el => el.StartDate > today.AddDays(3));
-            var newScheduleList1 = scheduleList.Filter(el => el.StartDate > today.AddDays(3));
 
+            var newScheduleList = Filter(scheduleList, el => el.StartDate > today.AddDays(3));
             var scheduleTitleList = Select(scheduleList, el => new { el.Title });
+
+            var newScheduleList1 = scheduleList.Filter(el => el.StartDate > today.AddDays(3));
             var scheduleTitleList1 = scheduleList.Select(el => new { el.Title });
 
-            var json = JsonConvert.SerializeObject(newScheduleList, Formatting.Indented);
+            var scheduleTitleList2 = scheduleList
+                .Filter(el => el.StartDate > today.AddDays(3))
+                .Select(el => new { el.Title });
+
+            var json = JsonConvert.SerializeObject(scheduleTitleList2, Formatting.Indented);
             Console.WriteLine(json);
         }
 
