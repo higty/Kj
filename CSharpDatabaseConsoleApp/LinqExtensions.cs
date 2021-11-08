@@ -21,5 +21,15 @@ namespace CSharpDatabase
             }
             return l;
         }
+        public static List<TResult> Select<T, TResult>(List<T> list, Func<T, TResult> selectFunc)
+        {
+            var l = new List<TResult>();
+            foreach (var item in list)
+            {
+                var r = selectFunc(item);
+                l.Add(r);
+            }
+            return l;
+        }
     }
 }

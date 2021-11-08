@@ -134,7 +134,7 @@ namespace CSharpDatabase
 
             var l = Select(teamList, el => new
             {
-                Name = el.Name,
+                el.Name,
             });
             var json = JsonConvert.SerializeObject(l, Formatting.Indented);
             Console.WriteLine(json);
@@ -198,6 +198,9 @@ namespace CSharpDatabase
             var today = DateTime.Now.Date;
             var newScheduleList = Filter(scheduleList, el => el.StartDate > today.AddDays(3));
             var newScheduleList1 = scheduleList.Filter(el => el.StartDate > today.AddDays(3));
+
+            var scheduleTitleList = Select(scheduleList, el => new { el.Title });
+            var scheduleTitleList1 = scheduleList.Select(el => new { el.Title });
 
             var json = JsonConvert.SerializeObject(newScheduleList, Formatting.Indented);
             Console.WriteLine(json);
