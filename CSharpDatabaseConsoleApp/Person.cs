@@ -69,4 +69,26 @@ namespace CSharpDatabase
         public String Address { get; set; }
     }
 
+
+    public class TaskRecord
+    {
+        public String Id { get; set; }
+        public String Title { get; set; }
+        public DateTime DueDate { get; set; }
+        public String Description { get; set; }
+    }
+    public class ScheduleRecord
+    {
+        public Guid ScheduleCD { get; set; }
+        public String Title { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        public override string ToString()
+        {
+            return String.Format("{0} {1}-{2}", this.Title
+                , this.StartDate.ToString("yyyy/MM/dd"), this.EndDate.ToString("yyyy/MM/dd"));
+        }
+    }
+
 }

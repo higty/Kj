@@ -18,8 +18,7 @@ namespace CSharpDatabase
 
         static void Main(string[] args)
         {
-            FilterTeamAndSelectToAnonymousClass();
-
+            FilterTeamAndSelectToAnonymousClass1();
         }
 
         private static void Action_Func()
@@ -46,39 +45,39 @@ namespace CSharpDatabase
         {
             var personList = CreatePersonList();
 
-            var footballPlayerList = FilterPerson(personList, IsSportsFootball);
-            var over30List = FilterPerson(personList, IsAgeOver30);
-            var over25List = FilterPerson(personList, IsAgeOver25);
+            var footballPlayerList = Filter(personList, IsSportsFootball);
+            var over30List = Filter(personList, IsAgeOver30);
+            var over25List = Filter(personList, IsAgeOver25);
 
             //ラムダ式。名前が不要。定義した場所で使用されるので別でメソッドを定義するよりも可読性が高い。
             //使い捨て用途。
-            var over27List = FilterPerson(personList, p =>
+            var over27List = Filter(personList, p =>
             {
                 return p.Age > 27;
             });
-            var over27List0 = FilterPerson(personList, (Person p) =>
+            var over27List0 = Filter(personList, (Person p) =>
             {
                 return p.Age > 27;
             });
-            var over27List1 = FilterPerson(personList, p => p.Age > 27);
-            var over22List = FilterPerson(personList, p => p.Age > 22);
+            var over27List1 = Filter(personList, p => p.Age > 27);
+            var over22List = Filter(personList, p => p.Age > 22);
 
             Program.myFilter1 = p => p.Age > 21 && (p.Sports == "サッカー" || p.Sports == "テニス");
 
             //パフォーマンスはほぼ同じ。
-            var list1 = FilterPerson(personList, p => p.Age > 20 && p.Sports == "サッカー");
-            var list2 = FilterPerson(personList, myFilter1);
-            var list3 = FilterPerson(personList, IsAgeOver21_Soccer_Tennis);
+            var list1 = Filter(personList, p => p.Age > 20 && p.Sports == "サッカー");
+            var list2 = Filter(personList, myFilter1);
+            var list3 = Filter(personList, IsAgeOver21_Soccer_Tennis);
 
             //変数束縛で裏でクラスが生成されているのでほんの少しメモリを消費する。
             var age = 25;
-            var list4 = FilterPerson(personList, p => p.Age > age);
+            var list4 = Filter(personList, p => p.Age > age);
         }
         private static void ListPersonNameList()
         {
             var personList = CreatePersonList();
 
-            var filterPersonList = FilterPerson(personList, p => p.Age > 22);
+            var filterPersonList = Filter(personList, p => p.Age > 22);
             {
                 var l = Select(filterPersonList, p =>
                 {
@@ -119,7 +118,7 @@ namespace CSharpDatabase
         {
             var personList = CreatePersonList();
 
-            var filterPersonList = FilterPerson(personList, p => p.Age > 22);
+            var filterPersonList = Filter(personList, p => p.Age > 22);
             var l = Select(filterPersonList, p => new
             {
                 Name = p.Name,
@@ -165,21 +164,84 @@ namespace CSharpDatabase
             return l;
         }
 
-
-        private static List<Person> FilterPerson(List<Person> personList, Func<Person, Boolean> filterFunc)
+        private static void FilterTeamAndSelectToAnonymousClass1()
         {
-            var newPersonList = new List<Person>();
+            var scheduleList = CreateScheduleList();
+            var today = DateTime.Now.Date;
 
-            foreach (var item in personList)
+            var newScheduleTitleList = Select(Filter(scheduleList, el => el.StartDate > today.AddDays(3)), el => new
             {
-                if (filterFunc(item) == true)
+                Subject = el.Title,
+            });
+            var json = JsonConvert.SerializeObject(newScheduleTitleList, Formatting.Indented);
+            Console.WriteLine(json);
+        }
+        private static List<ScheduleRecord> CreateScheduleList()
+        {
+            var l = new List<ScheduleRecord>();
+            var today = DateTime.Now.Date;
+            for (int i = 0; i < 10; i++)
+            {
+                var r = new ScheduleRecord();
+                r.ScheduleCD = Guid.NewGuid();
+                r.Title = "タイトル" + i.ToString();
+                r.StartDate = today.AddDays(i);
+                r.EndDate = today.AddDays(i + 1);
+                l.Add(r);
+            }
+            return l;
+        }
+
+        private static void UseExtensionMethod()
+        {
+            var scheduleList = CreateScheduleList();
+            var today = DateTime.Now.Date;
+            var newScheduleList = Filter(scheduleList, el => el.StartDate > today.AddDays(3));
+            var newScheduleList1 = scheduleList.Filter(el => el.StartDate > today.AddDays(3));
+
+            var json = JsonConvert.SerializeObject(newScheduleList, Formatting.Indented);
+            Console.WriteLine(json);
+        }
+
+        private static List<T> Filter<T>(List<T> list, Func<T, Boolean> filter)
+        {
+            var l = new List<T>();
+
+            foreach (var item in list)
+            {
+                if (filter(item) == true)
                 {
-                    newPersonList.Add(item);
+                    l.Add(item);
                 }
             }
-            return newPersonList;
-
+            return l;
         }
+        //private static List<Person> Filter(List<Person> list, Func<Person, Boolean> filter)
+        //{
+        //    var l = new List<Person>();
+
+        //    foreach (var item in list)
+        //    {
+        //        if (filter(item) == true)
+        //        {
+        //            l.Add(item);
+        //        }
+        //    }
+        //    return l;
+        //}
+        //private static List<ScheduleRecord> Filter(List<ScheduleRecord> list, Func<ScheduleRecord, Boolean> filter)
+        //{
+        //    var l = new List<ScheduleRecord>();
+
+        //    foreach (var item in list)
+        //    {
+        //        if (filter(item) == true)
+        //        {
+        //            l.Add(item);
+        //        }
+        //    }
+        //    return l;
+        //}
 
 
         private static List<TResult> Select<T, TResult>(List<T> list, Func<T, TResult> selectFunc)
@@ -193,20 +255,40 @@ namespace CSharpDatabase
             }
             return l;
         }
-        //private static List<TResult> Select<TResult>(List<Person> personList, Func<Person, TResult> selectFunc)
+        //private static List<TResult> Select<TResult>(List<Person> list, Func<Person, TResult> selectFunc)
         //{
         //    var l = new List<TResult>();
-        //    foreach (var item in personList)
+        //    foreach (var item in list)
         //    {
         //        var r = selectFunc(item);
         //        l.Add(r);
         //    }
         //    return l;
         //}
-        //private static List<TResult> Select<TResult>(List<Team> teamList, Func<Team, TResult> selectFunc)
+        //private static List<TResult> Select<TResult>(List<Team> list, Func<Team, TResult> selectFunc)
         //{
         //    var l = new List<TResult>();
-        //    foreach (var item in teamList)
+        //    foreach (var item in list)
+        //    {
+        //        var r = selectFunc(item);
+        //        l.Add(r);
+        //    }
+        //    return l;
+        //}
+        //private static List<TResult> Select<TResult>(List<TaskRecord> list, Func<TaskRecord, TResult> selectFunc)
+        //{
+        //    var l = new List<TResult>();
+        //    foreach (var item in list)
+        //    {
+        //        var r = selectFunc(item);
+        //        l.Add(r);
+        //    }
+        //    return l;
+        //}
+        //private static List<TResult> Select<TResult>(List<ScheduleRecord> list, Func<ScheduleRecord, TResult> selectFunc)
+        //{
+        //    var l = new List<TResult>();
+        //    foreach (var item in list)
         //    {
         //        var r = selectFunc(item);
         //        l.Add(r);
