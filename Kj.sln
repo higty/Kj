@@ -33,9 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpDatabase", "CSharpDat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpDatabaseConsoleApp", "CSharpDatabaseConsoleApp\CSharpDatabaseConsoleApp.csproj", "{88BECF24-701F-492C-A292-2822393384A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreadWpfApp", "MultiThreadWpfApp\MultiThreadWpfApp.csproj", "{74A6923E-0B83-497F-8B71-94464FECD81F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreadWpfApp", "MultiThreadWpfApp\MultiThreadWpfApp.csproj", "{74A6923E-0B83-497F-8B71-94464FECD81F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadService", "ThreadService\ThreadService.csproj", "{B5FC4B73-74C6-4899-962B-D39AF3A82E83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadService", "ThreadService\ThreadService.csproj", "{B5FC4B73-74C6-4899-962B-D39AF3A82E83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvLibrary", "CsvLibrary\CsvLibrary.csproj", "{12E26A1F-8397-434E-B7F0-9EBDE7E1A7B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvLibraryTest", "CsvLibraryTest\CsvLibraryTest.csproj", "{84DAF56E-7265-4DE1-B962-F065BC5ACDE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +115,14 @@ Global
 		{B5FC4B73-74C6-4899-962B-D39AF3A82E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5FC4B73-74C6-4899-962B-D39AF3A82E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5FC4B73-74C6-4899-962B-D39AF3A82E83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E26A1F-8397-434E-B7F0-9EBDE7E1A7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E26A1F-8397-434E-B7F0-9EBDE7E1A7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E26A1F-8397-434E-B7F0-9EBDE7E1A7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E26A1F-8397-434E-B7F0-9EBDE7E1A7B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84DAF56E-7265-4DE1-B962-F065BC5ACDE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84DAF56E-7265-4DE1-B962-F065BC5ACDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84DAF56E-7265-4DE1-B962-F065BC5ACDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84DAF56E-7265-4DE1-B962-F065BC5ACDE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
