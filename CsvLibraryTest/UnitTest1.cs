@@ -21,16 +21,17 @@ namespace CsvLibraryTest
         public void Test2()
         {
             var reader = new CsvReader();
-            var lines = reader.Read(@"“c’†,21,“Œ‹“s`‹æ
+            //var s = "“c’†,21,“Œ‹“s`‹æ" + Environment.NewLine + "—é–Ø,22,“Œ‹“sVh‹æ";
+            var rowList = reader.Read(@"“c’†,21,“Œ‹“s`‹æ
 —é–Ø,22,“Œ‹“sVh‹æ");
 
-            var line0 = lines[0];
+            var line0 = rowList[0];
             Assert.Equal(3, line0.Length);
             Assert.Equal("“c’†", line0[0]);
             Assert.Equal("21", line0[1]);
             Assert.Equal("“Œ‹“s`‹æ", line0[2]);
 
-            var line1 = lines[1];
+            var line1 = rowList[1];
             Assert.Equal(3, line1.Length);
             Assert.Equal("—é–Ø", line1[0]);
             Assert.Equal("22", line1[1]);
