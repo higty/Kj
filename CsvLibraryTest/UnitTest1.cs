@@ -1,5 +1,6 @@
 using CsvLibrary;
 using System;
+using System.IO;
 using Xunit;
 
 namespace CsvLibraryTest
@@ -21,9 +22,10 @@ namespace CsvLibraryTest
         public void Test2()
         {
             var reader = new CsvReader();
-            //var s = "“c’†,21,“Œ‹“s`‹æ" + Environment.NewLine + "—é–Ø,22,“Œ‹“sVh‹æ";
-            var rowList = reader.Read(@"“c’†,21,“Œ‹“s`‹æ
-—é–Ø,22,“Œ‹“sVh‹æ");
+            //var s = "“c’†,21,“Œ‹“s`‹æ" + Environment.NewLine + "—é–Ø,22,“Œ‹“sVh‹æ";           
+            var filePath = System.IO.Path.Combine(Environment.CurrentDirectory, "Csv", "CsvSample.csv");
+            var bodyText = File.ReadAllText(filePath);
+            var rowList = reader.Read(bodyText);
 
             var line0 = rowList[0];
             Assert.Equal(3, line0.Length);
