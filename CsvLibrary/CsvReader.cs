@@ -6,9 +6,11 @@ namespace CsvLibrary
     {
         public String[] ReadLine(String line)
         {
-            //"Name1,Age1,Address3"--> ["Name1", "Age1", "Address3"]
-
-            return new string[0];
+            return line.Split(',');
+        }
+        public String[][] Read(String bodyText)
+        {
+            return null;
         }
     }
 }
