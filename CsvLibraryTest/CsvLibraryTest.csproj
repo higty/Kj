@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Csv\CsvSample _DoubleQuatation.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Csv\CsvSample.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

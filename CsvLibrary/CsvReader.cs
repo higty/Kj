@@ -9,7 +9,7 @@ namespace CsvLibrary
         {
             return line.Split(',');
         }
-        public String[][] Read(String bodyText)
+        public List<String[]> Read(String bodyText)
         {
             //行ごとに分割
             var lines = bodyText.Split("\n");
@@ -27,7 +27,7 @@ namespace CsvLibrary
                 var vv = line.Split(',');
                 rowList.Add(vv);
             }
-            return rowList.ToArray();
+            return rowList;
         }
     }
 }
