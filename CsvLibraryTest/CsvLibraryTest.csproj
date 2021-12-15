@@ -24,10 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Csv\CsvSample _DoubleQuatation_WIthNewLine.csv">
+    <None Update="Csv\CsvSample_DoubleQuatation_WithNewLine.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Csv\CsvSample _DoubleQuatation.csv">
+    <None Update="Csv\CsvSample_DoubleQuatation.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Csv\CsvSample.csv">
