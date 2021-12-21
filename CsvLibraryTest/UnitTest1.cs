@@ -8,10 +8,11 @@ namespace CsvLibraryTest
     public class UnitTest1
     {
         [Fact]
-        public void Test_Basic()
+        public void Test_Row()
         {
             var reader = new CsvReader();
-            var ss = reader.ReadLine("“c’†,21,“Œ‹“s`‹æ");
+            var rowList = reader.Read("“c’†,21,“Œ‹“s`‹æ");
+            var ss = rowList[0];
 
             Assert.Equal(3, ss.Length);
             Assert.Equal("“c’†", ss[0]);

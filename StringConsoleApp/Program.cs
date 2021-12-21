@@ -6,6 +6,23 @@ namespace StringConsoleApp
     {
         static void Main(string[] args)
         {
+            var text = "abcdefg";
+            for (int i = 0; i < text.Length; i++)
+            {
+                Char c = text[i];
+                if (c == '"')
+                {
+                }
+                else
+                {
+
+                }
+            }
+            foreach (var c in text)
+            {
+
+            }
+
             var s = " abcdefa   ";
             var s1 = s.Trim();
             var s2 = s.Replace("a", "b");
