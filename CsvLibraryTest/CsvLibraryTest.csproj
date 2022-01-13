@@ -20,10 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CsvLibrary\CsvLibrary.csproj" />
+    <ProjectReference Include="..\CsvLibraryHiguchi\CsvLibraryHiguchi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Csv\CsvSample_DoubleQuatation_WithDoubleQuatation.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Csv\CsvSample_DoubleQuatation_WithComma.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
