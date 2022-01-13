@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CsvLibraryHiguchi\CsvLibraryHiguchi.csproj" />
+    <ProjectReference Include="..\CsvLibrary\CsvLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
