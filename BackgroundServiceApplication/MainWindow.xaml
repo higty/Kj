@@ -18,7 +18,9 @@
         </ListView>
         <Label x:Name="ThreadStateLabel" Content="Stop" Margin="10,0,0,15" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="185"/>
         <Button x:Name="StartButton" Click="StartButton_Click"
-                Content="Start" Margin="0,0,120,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
+                Content="Start" Margin="0,0,230,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
+        <Button x:Name="StopButton" Click="StopButton_Click"
+                Content="Stop" Margin="0,0,120,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
         <Button x:Name="AddCommandButton" Click="AddCommandButton_Click"
                 Content="Add Command" Margin="0,0,10,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
 

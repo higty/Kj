@@ -8,11 +8,11 @@ using System.Windows.Data;
 
 namespace BackgroundServiceApplication
 {
-    public class BackgroundService
+    public class KjBackgroundService
     {
         public List<ServiceCommand> CommandList { get; init; } = new();
 
-        public BackgroundService()
+        public KjBackgroundService()
         {
         }
 
