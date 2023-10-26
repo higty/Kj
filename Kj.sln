@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringConsoleApp", "StringC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvLibraryHiguchi", "CsvLibraryHiguchi\CsvLibraryHiguchi.csproj", "{5E721516-F7E7-4EA5-872D-6ADDBF1F4DC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundServiceApplication", "BackgroundServiceApplication\BackgroundServiceApplication.csproj", "{17534168-E962-4D2F-9371-BD6BB3C9C2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackgroundServiceApplication", "BackgroundServiceApplication\BackgroundServiceApplication.csproj", "{17534168-E962-4D2F-9371-BD6BB3C9C2C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatGPTApp", "ChatGPTApp\ChatGPTApp.csproj", "{B14463D0-8417-44E0-92B4-E7E931899F59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,10 @@ Global
 		{17534168-E962-4D2F-9371-BD6BB3C9C2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17534168-E962-4D2F-9371-BD6BB3C9C2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17534168-E962-4D2F-9371-BD6BB3C9C2C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14463D0-8417-44E0-92B4-E7E931899F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14463D0-8417-44E0-92B4-E7E931899F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14463D0-8417-44E0-92B4-E7E931899F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14463D0-8417-44E0-92B4-E7E931899F59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
