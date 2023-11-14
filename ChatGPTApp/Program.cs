@@ -1,4 +1,5 @@
 ﻿using Azure.AI.OpenAI;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
@@ -23,6 +24,7 @@ namespace ChatGPTApp
             if (string.Equals(Console.ReadLine(), "Y", StringComparison.OrdinalIgnoreCase))
             {
                 functionList.Add(CreateFunction());
+                functionList.Add(CreateWhetherFunction());
                 Console.WriteLine("Functionを追加しました。");
             }
 
@@ -97,12 +99,23 @@ namespace ChatGPTApp
                     Console.WriteLine("Function callingが選択されました。");
                     Console.WriteLine($"Function Name: {functionName}");
                     Console.WriteLine($"Arguments: {arguments}");
+
+                    //会話の文脈から天気のAPIを実行した方が良さそうとAIが判断
+                    if (functionName == "GetWhether")
+                    {
+                        var p = JsonConvert.DeserializeObject<GetWhetherFunctionParameter>(arguments.ToString());
+                        var location = p.Location;
+
+                        var httpClient = new HttpClient();
+                        //あとはこんな感じでAPIを呼び出す
+                        //var res = httpClient.GetAsync("https://www.kajima.com/api/whether/get", p);
+                    }
                 }
             }
         }
         private static FunctionDefinition CreateFunction()
         {
-            var f = new FunctionDefinition("ParagraphList");
+            var f = new FunctionDefinition("CreateParagraphList");
             f.Description = "Create text from paragraph list.";
             f.Parameters = BinaryData.FromObjectAsJson(new
             {
@@ -131,6 +144,20 @@ namespace ChatGPTApp
                             }
                         }
                     }
+                },
+            }, JsonSerializerOptions);
+            return f;
+        }
+        private static FunctionDefinition CreateWhetherFunction()
+        {
+            var f = new FunctionDefinition("GetWhether");
+            f.Description = "指定した都市の天気を取得します。";
+            f.Parameters = BinaryData.FromObjectAsJson(new
+            {
+                type = "object",
+                properties = new
+                {
+                    location = new { Type = "string", description = "Location that you want to know the whether" },
                 },
             }, JsonSerializerOptions);
             return f;
